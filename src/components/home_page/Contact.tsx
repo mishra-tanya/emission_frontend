@@ -1,0 +1,162 @@
+import React, { useState } from "react";
+import {
+  Box,
+  Grid,
+  Typography,
+  TextField,
+  Button,
+} from "@mui/material";
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    subject: false,
+    message: false,
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      name: !formData.name.trim(),
+      email: !formData.email.match(/^\S+@\S+\.\S+$/),
+      subject: !formData.subject.trim(),
+      message: !formData.message.trim(),
+    };
+
+    setErrors(newErrors);
+    return !Object.values(newErrors).some((error) => error);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (validateForm()) {
+      alert("Form submitted successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    }
+  };
+
+  return (
+    <Box
+      sx={{
+        color: "#ffffff",
+        padding: "2rem 1rem",
+        marginTop: "3rem",
+      }}
+    >
+     <Box sx={{ textAlign: 'center', marginBottom: '3rem',m:3 }}>
+        <Typography
+          variant="h2"
+          className="about-header"
+          sx={{
+            fontSize: {
+              xs: '2.5rem',
+              sm: '3rem',
+              md: '3.5rem',
+            },
+            fontWeight: 'bold',
+            color: '#2c3e50',
+            letterSpacing: '1px',
+            marginBottom: '1rem',
+          }}
+        >
+          Contact Us
+        </Typography>
+        </Box>
+        <Grid item xs={12} md={6}>
+          
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  label="Name"
+                  name="name"
+                  variant="outlined"
+                  fullWidth
+                  value={formData.name}
+                  onChange={handleChange}
+                  error={errors.name}
+                  helperText={errors.name && "Name is required"}
+                  sx={{ backgroundColor: "#ffffff" }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  label="Email"
+                  name="email"
+                  variant="outlined"
+                  fullWidth
+                  value={formData.email}
+                  onChange={handleChange}
+                  error={errors.email}
+                  helperText={errors.email && "Invalid email"}
+                  sx={{ backgroundColor: "#ffffff" }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Subject"
+                  name="subject"
+                  variant="outlined"
+                  fullWidth
+                  value={formData.subject}
+                  onChange={handleChange}
+                  error={errors.subject}
+                  helperText={errors.subject && "Subject is required"}
+                  sx={{ backgroundColor: "#ffffff" }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Message"
+                  name="message"
+                  variant="outlined"
+                  multiline
+                  rows={4}
+                  fullWidth
+                  value={formData.message}
+                  onChange={handleChange}
+                  error={errors.message}
+                  helperText={errors.message && "Message is required"}
+                  sx={{ backgroundColor: "#ffffff" }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "black",
+                    color: "#ffffff",
+                    "&:hover": {
+                      backgroundColor: "#1e8449",
+                    },
+                  }}
+                >
+                  Submit
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Grid>
+
+    </Box>
+  );
+};
+
+export default Contact;
