@@ -2,28 +2,24 @@ import axios from "axios";
 import { API_BASE_URL } from "./Config";
 
 const api = axios.create({
-  baseURL: API_BASE_URL, 
+  baseURL: API_BASE_URL,
   withCredentials: true, 
 });
 
 export const getCsrfToken = async () => {
-    try {
-      const response = await api.get("/csrf-token/");
-      const csrfToken = response.data.csrfToken;
-  
-      console.log("CSRF Token initialized:", csrfToken);
-    } catch (error) {
-      console.error("Error fetching CSRF Token:", error);
-    }
+  try {
+    const response = await api.get("/csrf-token/");
+    const csrfToken = response.data.csrfToken;
+    console.log("CSRF Token initialized:", csrfToken);
+  } catch (error) {
+    console.error("Error fetching CSRF Token:", error);
+  }
 };
 
-// Request Interceptor: Add CSRF and Authorization tokens to requests
 api.interceptors.request.use(
   (config) => {
-    // Get the JWT token from localStorage
     const authToken = localStorage.getItem("authToken");
 
-    // Attach Authorization header if token is present
     if (authToken) {
       config.headers["Authorization"] = `Bearer ${authToken}`;
     }
@@ -32,6 +28,11 @@ api.interceptors.request.use(
     const csrfToken = getCookie("csrftoken");
     if (csrfToken) {
       config.headers["X-CSRFToken"] = csrfToken;
+    }
+
+    // Ensure Content-Type is set to application/json for all POST requests
+    if (config.method === "post" || config.method === "put" || config.method === "patch") {
+      config.headers["Content-Type"] = "application/json";
     }
 
     return config;

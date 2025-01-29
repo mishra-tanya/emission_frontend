@@ -6,6 +6,7 @@ import Services from "../components/home_page/Services";
 import Footer from "../components/common/Footer";
 import Contact from "../components/home_page/Contact";
 import FAQs from "../components/home_page/Faqs";
+import VerticalLinearStepper from "../components/home_page/Step";
 
 export default function HomePage() {
     
@@ -17,6 +18,7 @@ export default function HomePage() {
         </Box>
         <About/>
         <Services/>
+        <VerticalLinearStepper/>
         <FAQs/>
         <Contact/>
         <Footer/>

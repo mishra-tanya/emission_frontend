@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import faqData from "./data/Faqs_data";
+import StyleType from "../common/StyleType";
 
 const FAQs = () => {
 
@@ -17,25 +18,7 @@ const FAQs = () => {
         padding: "3rem 1rem",
       }}
     >
-        <Box sx={{ textAlign: 'center', marginBottom: '3rem',m:3 }}>
-              <Typography
-                variant="h2"
-                className="about-header"
-                sx={{
-                  fontSize: {
-                    xs: '2.5rem',
-                    sm: '3rem',
-                    md: '3.5rem',
-                  },
-                  fontWeight: 'bold',
-                  color: '#2c3e50',
-                  letterSpacing: '1px',
-                  marginBottom: '1rem',
-                }}
-              >
-                Frequently Asked Questions
-              </Typography>
-              </Box>
+       <StyleType title="Frequently Asked Questions" />
       <Box
         sx={{
           maxWidth: "900px",
@@ -48,12 +31,10 @@ const FAQs = () => {
               expandIcon={<ExpandMoreIcon  sx={{color:"white"
               }}/>}
               sx={{
-                backgroundColor: "black",
-                borderRadius:'5px',
-                color: "#ffffff",
+                borderRadius:'8px',
+                backgroundColor: "white",
                 "&:hover": {
-                  backgroundColor: "white",
-                  color:'black'
+                  color:'grey'
                 },
               }}
             >

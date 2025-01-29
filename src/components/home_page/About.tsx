@@ -1,43 +1,20 @@
 import { Box, Typography, } from '@mui/material';
-import { useEffect } from 'react';
-import gsap from 'gsap';
+import useGsapAnimation from '../common/animation/PopUp';
+import StyleType from '../common/StyleType';
 
 const About = () => {
-  useEffect(() => {
-    gsap.fromTo(
-      '.about-header',
-      { opacity: 0, y: -50 },
-      { opacity: 1, y: 0, duration: 1.5, ease: 'power2.out' }
-    );
-
-    gsap.fromTo(
-      '.about-content',
-      { opacity: 0, x: -100 },
-      { opacity: 1, x: 0, duration: 1.5, delay: 0.5, ease: 'power2.out' }
-    );
-  }, []);
-
+ 
+  useGsapAnimation({
+    target: '.box',
+    from: { opacity: 0, scale: 0 },
+    to: { opacity: 1, scale: 1, duration: 2 },
+  });
+  
   return (
     <Box sx={{ padding: '5rem 0', backgroundColor: '#f4f4f9', }}>
-      <Box sx={{ textAlign: 'center', marginBottom: '3rem',m:3 }}>
+      <StyleType title="About Us" />
         <Typography
-          variant="h2"
-          className="about-header"
-          sx={{
-            fontSize: {
-              xs: '2.5rem',
-              sm: '3rem',
-              md: '3.5rem',
-            },
-            fontWeight: 'bold',
-            color: '#2c3e50',
-            letterSpacing: '1px',
-            marginBottom: '1rem',
-          }}
-        >
-          About Us
-        </Typography>
-        <Typography
+        className='box'
           variant="body1"
           sx={{
             fontSize: {
@@ -48,6 +25,7 @@ const About = () => {
             color: '#7f8c8d',
             lineHeight: '1.8',
             maxWidth: '800px',
+            textAlign:'center',
             margin: '0 auto',
           }}
         >
@@ -59,7 +37,6 @@ const About = () => {
         </Typography>
       </Box>
 
-    </Box>
   );
 };
 

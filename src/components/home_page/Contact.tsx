@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import {
   Box,
   Grid,
-  Typography,
   TextField,
   Button,
 } from "@mui/material";
+import StyleType from "../common/StyleType";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,7 @@ const Contact = () => {
     email: "",
     subject: "",
     message: "",
+    contact:"",
   });
 
   const [errors, setErrors] = useState({
@@ -20,6 +21,7 @@ const Contact = () => {
     email: false,
     subject: false,
     message: false,
+    contact: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +34,7 @@ const Contact = () => {
       email: !formData.email.match(/^\S+@\S+\.\S+$/),
       subject: !formData.subject.trim(),
       message: !formData.message.trim(),
+      contact: !formData.message.trim()
     };
 
     setErrors(newErrors);
@@ -47,6 +50,7 @@ const Contact = () => {
         email: "",
         subject: "",
         message: "",
+        contact:""
       });
     }
   };
@@ -59,30 +63,12 @@ const Contact = () => {
         marginTop: "3rem",
       }}
     >
-     <Box sx={{ textAlign: 'center', marginBottom: '3rem',m:3 }}>
-        <Typography
-          variant="h2"
-          className="about-header"
-          sx={{
-            fontSize: {
-              xs: '2.5rem',
-              sm: '3rem',
-              md: '3.5rem',
-            },
-            fontWeight: 'bold',
-            color: '#2c3e50',
-            letterSpacing: '1px',
-            marginBottom: '1rem',
-          }}
-        >
-          Contact Us
-        </Typography>
-        </Box>
+     <StyleType title="Contact Us" />
         <Grid item xs={12} md={6}>
           
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={4}>
                 <TextField
                   label="Name"
                   name="name"
@@ -95,7 +81,20 @@ const Contact = () => {
                   sx={{ backgroundColor: "#ffffff" }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  label="Contact No."
+                  name="contact"
+                  variant="outlined"
+                  fullWidth
+                  value={formData.contact}
+                  onChange={handleChange}
+                  error={errors.contact}
+                  helperText={errors.contact && "Contact is required"}
+                  sx={{ backgroundColor: "#ffffff" }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
                 <TextField
                   label="Email"
                   name="email"

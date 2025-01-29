@@ -14,9 +14,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { Home, Info, Login, MiscellaneousServices, Person } from '@mui/icons-material';
 import { ListItemIcon } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { menuItems } from './data/menuItems';
 
 interface Props {
     window?: () => Window;
@@ -56,19 +56,13 @@ function ScrollTop(props: Props) {
     );
 }
 
-export default function BackToTop(props: Props) {
+export default function Navbar(props: Props) {
     const [drawerOpen, setDrawerOpen] = React.useState(false);
 
     const toggleDrawer = (open: boolean) => () => {
         setDrawerOpen(open);
     };
-    const menuItems = [
-        { text: 'Home', icon: <Home />, to: '/' },
-        { text: 'About', icon: <Info />, to: '#about' },
-        { text: 'Contact', icon: <Person />, to: '#contact' },
-        { text: 'Service', icon: <MiscellaneousServices />, to: '#service' },
-        { text: 'Login', icon: <Login />, to: '/login' }
-    ];
+   
 
     return (
         <React.Fragment>

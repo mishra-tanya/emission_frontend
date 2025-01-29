@@ -1,7 +1,7 @@
 import { Box, Grid, Typography, Link, IconButton } from "@mui/material";
-import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
-
+import { socials,menuItems } from "./data/menuItems";
 const Footer = () => {
+
   return (
     <Box
       sx={{
@@ -25,18 +25,11 @@ const Footer = () => {
           <Typography variant="h6" sx={{ fontWeight: "bold", marginBottom: "1rem" }}>
             Quick Links
           </Typography>
-          <Link href="/" underline="none" sx={{ display: "block", color: "#ffffff", marginBottom: "0.5rem" }}>
-            Home
-          </Link>
-          <Link href="/about" underline="none" sx={{ display: "block", color: "#ffffff", marginBottom: "0.5rem" }}>
-            About Us
-          </Link>
-          <Link href="/services" underline="none" sx={{ display: "block", color: "#ffffff", marginBottom: "0.5rem" }}>
-            Services
-          </Link>
-          <Link href="/contact" underline="none" sx={{ display: "block", color: "#ffffff" }}>
-            Contact
-          </Link>
+          {menuItems.map((quickLink)=>(
+              <Link href={quickLink.to} underline="none" sx={{ display: "block", color: "#ffffff", marginBottom: "0.5rem" }}>
+              {quickLink.text}
+            </Link>
+          ))}
         </Grid>
 
         <Grid item xs={12} sm={6} md={3}>
@@ -57,18 +50,11 @@ const Footer = () => {
             Follow Us
           </Typography>
           <Box>
-            <IconButton href="https://facebook.com" target="_blank" sx={{ color: "#ffffff" }}>
-              <Facebook />
+            {socials.map((social)=>(
+              <IconButton href={social.link} target="_blank" sx={{ color: "#ffffff" }}>
+             {social.icon}
             </IconButton>
-            <IconButton href="https://twitter.com" target="_blank" sx={{ color: "#ffffff" }}>
-              <Twitter />
-            </IconButton>
-            <IconButton href="https://instagram.com" target="_blank" sx={{ color: "#ffffff" }}>
-              <Instagram />
-            </IconButton>
-            <IconButton href="https://linkedin.com" target="_blank" sx={{ color: "#ffffff" }}>
-              <LinkedIn />
-            </IconButton>
+            ))}
           </Box>
         </Grid>
       </Grid>
@@ -82,7 +68,7 @@ const Footer = () => {
         }}
       >
         <Typography variant="body2" sx={{ color: "#bdc3c7" }}>
-          © {new Date().getFullYear()} Your Company. All rights reserved.
+          © {new Date().getFullYear()} Finance Emission Computation. All rights reserved.
         </Typography>
       </Box>
     </Box>

@@ -2,6 +2,7 @@ import { Box, Card, CardContent, Typography, Grid } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import services from './data/Services_data';
+import StyleType from '../common/StyleType';
 
 const Services = () => {
   const serviceRef = useRef<any[]>([]);
@@ -38,25 +39,7 @@ const Services = () => {
 
   return (
     <Box sx={{ padding: '5rem 0', backgroundColor: 'white',m:2 }}>
-        <Box sx={{ textAlign: 'center', marginBottom: '3rem' }}>
-      <Typography
-         variant="h2"
-         className="about-header"
-         sx={{
-           fontSize: {
-             xs: '2.5rem',
-             sm: '3rem',
-             md: '3.5rem',
-           },
-           fontWeight: 'bold',
-           color: '#2c3e50',
-           letterSpacing: '1px',
-           marginBottom: '1rem',
-         }}
-      >
-        Why Finance Computation Emission?
-      </Typography>
-      </Box>
+        <StyleType title="Why Finance Emission Computation" />
 
       <Grid container spacing={3} justifyContent="center" >
         {services.map((service, index) => (

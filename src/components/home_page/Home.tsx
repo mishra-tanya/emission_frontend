@@ -3,44 +3,49 @@ import gsap from 'gsap';
 import { Box, Typography } from '@mui/material';
 import { ArrowOutward } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import useGsapAnimation from '../common/animation/PopUp';
 
 const Home = () => {
+  
   useEffect(() => {
-    gsap.fromTo(
-      '.box',
-      { opacity: 0, scale: 0 },
-      { opacity: 1, scale: 1, duration: 2 }
-    );
-
     const createFloatingItems = () => {
       const container = document.querySelector('.floating-container') as HTMLElement;
-
-      const symbols = ['💰', '➕', '💸','🎯']; 
+  
+      const symbols = ['💰', '➕', '💸', '🎯'];
       for (let i = 0; i < 10; i++) {
         const item = document.createElement('div');
         item.className = 'floating-item';
         item.style.position = 'absolute';
-        item.style.fontSize = `${Math.random() * 20 + 20}px`; 
+        item.style.fontSize = `${Math.random() * 20 + 20}px`;
         item.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
         container?.appendChild(item);
-
-        const startX = Math.random() * window.innerWidth;
+  
+        const startX = Math.random() * (window.innerWidth - 50);
         const startY = window.innerHeight + Math.random() * 100;
         item.style.left = `${startX}px`;
         item.style.top = `${startY}px`;
-
+  
         gsap.to(item, {
-          y: -window.innerHeight - Math.random() * 100, 
-          x: Math.random() * 200 - 100, 
-          duration: Math.random() * 4 + 4, 
-          repeat: -1, 
+           y: -Math.random() * window.innerHeight, 
+          x: `+=${Math.random() * 50 - 25}`,
+          duration: Math.random() * 4 + 4,
+          repeat: -1,
           ease: 'power1.inOut',
+          onRepeat: () => {
+            item.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
+          },
         });
       }
     };
-
-    createFloatingItems(); 
+  
+    createFloatingItems();
   }, []);
+  
+  useGsapAnimation({
+    target: '.box',
+    from: { opacity: 0, scale: 0 },
+    to: { opacity: 1, scale: 1, duration: 2 },
+  });
 
   return (
     <>
@@ -60,6 +65,10 @@ const Home = () => {
               sm: '5rem',
               md: '6rem',
             },
+            fontWeight:{
+              xs:'bold',
+              sm:'normal'
+            }
           }}
         >
           Finance Emission <br /> Computation
