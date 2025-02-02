@@ -1,8 +1,13 @@
 import { Box, Grid, Typography, Link, IconButton } from "@mui/material";
-import { socials,menuItems } from "./data/menuItems";
+import { MenuItems } from "./data/menuItems";
+import { socials } from "./data/socials";
+
 const Footer = () => {
 
+  const menuItems=MenuItems();
+
   return (
+    
     <Box
       sx={{
         backgroundColor: "black",

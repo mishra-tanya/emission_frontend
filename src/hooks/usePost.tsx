@@ -23,18 +23,22 @@ export function usePost<T>() {
       setState({ data: response.data, error: null, isLoading: false });
       return response.data;
     } catch (error: any) {
-        console.error("Error response:", error.response?.data);
-    
-        const errorMessages = error.response?.data || {};
-        const allErrors = Object.keys(errorMessages)
-          .map((field) => `${field.charAt(0).toUpperCase() + field.slice(1)}: ${errorMessages[field].join(", ")}`)
-          .join(", "); 
-    
-        setState({
-          data: null,
-          error: allErrors || "Something went wrong",
-          isLoading: false,
-        });
+      let errorMessage = "Something went wrong";
+      console.log("Field errors:", error);
+      if (error.response?.data) {
+        const errorDetails = error.response?.data || {};
+     
+        errorMessage = Object.values(errorDetails)
+          .map((fieldErrors: any) => fieldErrors.join(", "))
+          .join(", ");
+      }
+      console.error("Error response:", errorMessage);
+
+      setState({
+        data: null,
+        error: errorMessage,
+        isLoading: false,
+      });
     }
   };
 

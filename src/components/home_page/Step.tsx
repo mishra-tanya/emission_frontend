@@ -51,7 +51,7 @@ export default function VerticalLinearStepper() {
       >
         <Box
           sx={{
-            maxWidth: "450px",
+            maxWidth: "550px",
             backgroundColor: "#1E1E1E",
             padding: "20px",
             borderRadius: "12px",
@@ -105,24 +105,28 @@ export default function VerticalLinearStepper() {
                     >
                       {index === steps.length - 1 ? "Finish" : "Continue"}
                     </Button>
+                   {index==0?
+                   <>
+                   </>:
                     <Button
-                      disabled={index === 0}
-                      onClick={handleBack}
-                      sx={{
-                        mt: 1,
-                        mr: 1,
-                        color: "#FFFFFF",
-                        border: "1px solid #FFF",
-                        fontSize: "16px",
-                        padding: "8px 18px",
-                        borderRadius: "8px",
-                        "&:hover": {
-                          backgroundColor: "#333",
-                        },
-                      }}
-                    >
-                      Back
-                    </Button>
+                    disabled={index === 0}
+                    onClick={handleBack}
+                    sx={{
+                      mt: 1,
+                      mr: 1,
+                      color: "#FFFFFF",
+                      border: "1px solid #FFF",
+                      fontSize: "16px",
+                      padding: "8px 18px",
+                      borderRadius: "8px",
+                      "&:hover": {
+                        backgroundColor: "#333",
+                      },
+                    }}
+                  >
+                    Back
+                  </Button>
+                   }
                   </Box>
                 </StepContent>
               </Step>
