@@ -11,7 +11,7 @@ const About = () => {
   });
   
   return (
-    <Box sx={{ padding: '5rem 0', backgroundColor: '#f4f4f9', }}>
+    <Box id='about' sx={{ padding: '5rem 0', backgroundColor: '#f4f4f9', }}>
       <StyleType title="About Us" />
         <Typography
         className='box'

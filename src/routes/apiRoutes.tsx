@@ -1,5 +1,5 @@
 const apiRoutes = {
-    login: '/testing/',
+    login: '/login/',
     register: '/register/',
     fetchAuthenticatedUser: '/testing',
     getAllProducts: '/products',

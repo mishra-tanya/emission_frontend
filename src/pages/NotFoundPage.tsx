@@ -1,17 +1,19 @@
 import React from "react";
-import { useFetch } from "../hooks/fetchData";
-import apiRoutes from "../routes/apiRoutes";
+import useAuth from "../hooks/useAuth";
+import {  useNavigate } from "react-router-dom";
 
 const NotFoundPage: React.FC = () => {
-  const { data, error, isLoading } = useFetch<{ message: string }>(apiRoutes.login);
+  const isAuthenticated = useAuth();
+  const navigate=useNavigate();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (!isAuthenticated) {
+    navigate('/login')
+    return <div>Redirecting to login...</div>;
+  }
 
   return (
     <div>
       <h1>API Response</h1>
-      <p>{data?.message}</p>
     </div>
   );
 };

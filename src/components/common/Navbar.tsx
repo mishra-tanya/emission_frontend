@@ -14,9 +14,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { ListItemIcon } from '@mui/material';
+import { Button, ListItemIcon } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { menuItems } from './data/menuItems';
+import { MenuItems } from './data/menuItems'; 
 
 interface Props {
     window?: () => Window;
@@ -58,11 +58,11 @@ function ScrollTop(props: Props) {
 
 export default function Navbar(props: Props) {
     const [drawerOpen, setDrawerOpen] = React.useState(false);
-
     const toggleDrawer = (open: boolean) => () => {
         setDrawerOpen(open);
     };
-   
+
+    const menuItems = MenuItems(); 
 
     return (
         <React.Fragment>
@@ -70,7 +70,7 @@ export default function Navbar(props: Props) {
             <AppBar sx={{ backgroundColor: 'black' }}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                      Finance Emission Computation
+                        Finance Emission Computation
                     </Typography>
 
                     <IconButton
@@ -86,9 +86,23 @@ export default function Navbar(props: Props) {
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         {menuItems.map((item) => (
                             <Box sx={{ m: 2 }} key={item.text}>
-                                <Link to={item.to} style={{ textDecoration: 'none', color: 'white' }}>
-                                    {item.text}
-                                </Link>
+                                {item.onClick ? (
+                                    <Button onClick={item.onClick} startIcon={item.icon} sx={{ color: 'white' }}>
+                                        {item.text}
+                                    </Button>
+                                ) : (
+                                    item.to ? (
+                                        <Link to={item.to} style={{ textDecoration: 'none', color: 'white' }}>
+                                            <Button  sx={{ color: 'white' }}>
+                                                {item.text}
+                                            </Button>
+                                        </Link>
+                                    ) : (
+                                        <Button startIcon={item.icon} sx={{ color: 'white' }} onClick={item.onClick}>
+                                            {item.text}
+                                        </Button>
+                                    )
+                                )}
                             </Box>
                         ))}
                     </Box>
@@ -104,15 +118,35 @@ export default function Navbar(props: Props) {
                     padding: 2,
                 }}
             >
-                <Typography sx={{ color: 'black', p: 3, textAlign: 'center' }}>
-                    Menu
+                <Typography sx={{ color: 'black', pt: 2,pb:1, textAlign: 'center' }}>
+                     Menu 
                 </Typography>
                 <List sx={{ padding: 0 }}>
+                <hr />
+
                     {menuItems.map((item, index) => (
                         <ListItem key={index}>
                             <ListItemIcon sx={{ color: 'black' }}>{item.icon}</ListItemIcon>
                             <ListItemText
-                                primary={<Link to={item.to} style={{ textDecoration: 'none', }}>{item.text}</Link>}
+                                primary={
+                                    item.onClick ? (
+                                        <Button onClick={item.onClick}  sx={{ color: 'black' }}>
+                                            {item.text}
+                                        </Button>
+                                    ) : (
+                                        item.to ? (
+                                            <Link to={item.to} style={{ textDecoration: 'none' }}>
+                                                <Button  sx={{ color: 'black' }}>
+                                                    {item.text}
+                                                </Button>
+                                            </Link>
+                                        ) : (
+                                            <Button  sx={{ color: 'black' }} onClick={item.onClick}>
+                                                {item.text}
+                                            </Button>
+                                        )
+                                    )
+                                }
                             />
                         </ListItem>
                     ))}

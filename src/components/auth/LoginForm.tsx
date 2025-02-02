@@ -6,22 +6,27 @@ import { Link, useNavigate } from "react-router-dom";
 import { validateForm } from "../../utils/Validations";
 import apiRoutes from "../../routes/apiRoutes";
 import { usePost } from "../../hooks/usePost";
-// import Cookies from "js-cookie"; 
-
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 interface FormState {
   username: string;
   password: string;
 }
 
+interface AuthResponse {
+  access: string;
+  refresh: string;
+}
+
 const LoginForm: React.FC = () => {
-  const { formData, handleChange, resetForm } = useForm<FormState>({
+  const { formData, handleChange } = useForm<FormState>({
     username: "",
     password: "",
   });
 
   const navigate = useNavigate();
 
-  const { postData, isLoading, error, data } = usePost<{ token: string }>();
+  const { postData, isLoading, error } = usePost<AuthResponse>(); 
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -35,16 +40,25 @@ const LoginForm: React.FC = () => {
       return;
     }
 
-    const response = await postData(apiRoutes.login, formData); 
-    if (response && response.token) {
-      console.log("Login Successful:", response);
+    const response = await postData(apiRoutes.login, formData);
+    if (response && response.access && response.refresh) {
+      Cookies.set("access_token", response.access, { expires: 7 });
+      Cookies.set("refresh_token", response.refresh, { expires: 7 });
+      try {
+        const decodedToken: any = jwtDecode(response.access);
+        console.log(decodedToken.user_id);
 
-      // Cookies.set("token", response.token, { expires: 7 }); 
-
-      resetForm();
-
+        if (decodedToken && decodedToken.user_id) {
+          sessionStorage.setItem("user_id", decodedToken.user_id);
+          
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
       alert("Login successful!");
-      navigate("/dashboard"); 
+      navigate("/choice");
+    } else {
+      alert("Login failed. Please check your credentials.");
     }
   };
 
@@ -72,10 +86,10 @@ const LoginForm: React.FC = () => {
       <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }} disabled={isLoading}>
         {isLoading ? "Signing in..." : "Sign In"}
       </Button>
-        <Box sx={{marginTop:3}}>
-          {error && <Typography sx={{textAlign:'center',bgcolor:'#d32f2f',borderRadius:1,p:1,color:'white'}}>{error}</Typography>}
-            {data && <Typography color="success.main">Registration Successful!</Typography>}
-          </Box>
+
+      <Box sx={{ marginTop: 3 }}>
+        {error && <Typography sx={{ textAlign: "center", bgcolor: "#d32f2f", borderRadius: 1, p: 1, color: "white" }}>{error}</Typography>}
+      </Box>
 
       <Box sx={{ marginBlock: 4, display: "flex", flexDirection: { xs: "column", md: "row" }, justifyContent: { xs: "center", md: "space-between" }, alignItems: "center", gap: 1 }}>
         <Typography>
@@ -83,6 +97,12 @@ const LoginForm: React.FC = () => {
         </Typography>
         <Typography>
           Don't have an account? <Link to="/register">Create Now</Link>
+        </Typography>
+      </Box>
+
+      <Box sx={{ marginBlock: 1, display: "flex", alignItems: 'center', justifyContent: 'center' }}>
+        <Typography>
+          <Link to="/">Back to Home Page</Link>
         </Typography>
       </Box>
     </Box>
