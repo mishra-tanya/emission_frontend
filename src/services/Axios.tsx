@@ -78,13 +78,13 @@ api.interceptors.response.use(
   }
 );
 
-// Utility function to get cookies (for CSRF token retrieval)
-const getCookie = (name) => {
-  const cookieValue = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith(name + "="))
-    ?.split("=")[1];
-  return cookieValue ? decodeURIComponent(cookieValue) : null;
-};
+// // Utility function to get cookies (for CSRF token retrieval)
+// const getCookie = (name) => {
+//   const cookieValue = document.cookie
+//     .split("; ")
+//     .find((row) => row.startsWith(name + "="))
+//     ?.split("=")[1];
+//   return cookieValue ? decodeURIComponent(cookieValue) : null;
+// };
 
 export default api;

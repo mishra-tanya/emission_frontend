@@ -3,10 +3,20 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import services from './data/Services_data';
 import StyleType from '../common/StyleType';
+import { useLocation } from 'react-router-dom';
 
 const Services = () => {
   const serviceRef = useRef<any[]>([]);
+  const serRef = useRef<HTMLDivElement | null>(null);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#service" && serRef.current) {
+      serRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [location.hash]);
+  
   const handleScroll = () => {
     serviceRef.current.forEach((card, index) => {
       const rect = card.getBoundingClientRect();
@@ -38,7 +48,10 @@ const Services = () => {
   }, []);
 
   return (
-    <Box sx={{ padding: '5rem 0', backgroundColor: 'white',m:2 }}>
+    <Box
+    id="service"
+    ref={serRef}
+    sx={{ padding: '5rem 0', backgroundColor: 'white',m:2 }}>
         <StyleType title="Why Finance Emission Computation" />
 
       <Grid container spacing={3} justifyContent="center" >

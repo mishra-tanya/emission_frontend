@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Box,
   Grid,
@@ -6,8 +6,18 @@ import {
   Button,
 } from "@mui/material";
 import StyleType from "../common/StyleType";
+import { useLocation } from "react-router-dom";
 
 const Contact = () => {
+  const contactRef = useRef<HTMLDivElement | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#contact" && contactRef.current) {
+      contactRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [location.hash]);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -57,6 +67,8 @@ const Contact = () => {
 
   return (
     <Box
+    id="contact"
+    ref={(contactRef)}
       sx={{
         color: "#ffffff",
         padding: "2rem 1rem",
