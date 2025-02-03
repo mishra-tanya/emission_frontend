@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Card, CardContent, Typography, Button, Box } from "@mui/material";
+import { Card, CardContent, Typography, Button, Box, Grid } from "@mui/material";
 import Navbar from "../common/Navbar";
 import Footer from "../common/Footer";
 
@@ -18,7 +18,7 @@ const hasNestedContent = (value: any) => {
 const renderValue = (value: any, level = 0): React.ReactNode => {
   if (hasNestedContent(value)) {
     return (
-      <Box sx={{ ml: level === 0 ? 0 : 2 }}> 
+      <Box sx={{ ml: level === 0 ? 0 : 2 }}>
         {Object.entries(value).map(([nestedKey, nestedValue]) => (
           <Box key={nestedKey} sx={{ display: "flex", alignItems: "center" }}>
             <Typography sx={{ fontWeight: "bold", minWidth: "150px" }}>
@@ -44,21 +44,27 @@ const Results: React.FC = () => {
       <Box sx={{ m: 2 }}>
         <Card sx={{ maxWidth: 600, margin: "auto", mt: 5, p: 3, boxShadow: 3 }}>
           <CardContent>
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h4" sx={{textAlign:'center'}} gutterBottom>
               Submission Results
             </Typography>
 
             {resultData ? (
               <Box sx={{ mt: 2 }}>
                 {Object.entries(resultData).map(([key, value]) => (
-                  <Box key={key} sx={{ display: "flex", alignItems: "center",}}>
-                    {!hasNestedContent(value) && (
-                      <Typography sx={{ fontWeight: "bold", minWidth: "150px", }}>
-                        {formatLabel(key)}:
-                      </Typography>
-                    )}
-                    {renderValue(value)}
-                  </Box>
+                  <Grid container key={key} sx={{ mt: 1 }}>
+                    <Grid item xs={6}>
+                      <Box sx={{ backgroundColor: "#055bab", color: "white", padding: "5px", textAlign: "left" }}>
+                        <Typography sx={{ fontWeight: "bold" }}>{formatLabel(key)}</Typography>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Box sx={{ backgroundColor: "#a8ceff", padding: "5px", textAlign: "left" }}>
+                       <Typography sx={{mx:1}}>
+                       {renderValue(value)}
+                       </Typography>
+                      </Box>
+                    </Grid>
+                  </Grid>
                 ))}
               </Box>
             ) : (

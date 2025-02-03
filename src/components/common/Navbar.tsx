@@ -17,11 +17,26 @@ import ListItemText from '@mui/material/ListItemText';
 import { Button, ListItemIcon } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { MenuItems } from './data/menuItems'; 
+import { Link as RouterLink } from 'react-router-dom';
 
 interface Props {
     window?: () => Window;
     children?: React.ReactElement<unknown>;
 }
+
+interface MenuItem {
+    text: string;
+    icon?: React.ReactNode;
+    onClick?: () => void;
+    to?: string; 
+}
+
+const handleScroll = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+    }
+};
 
 function ScrollTop(props: Props) {
     const { children, window } = props;
@@ -62,7 +77,7 @@ export default function Navbar(props: Props) {
         setDrawerOpen(open);
     };
 
-    const menuItems = MenuItems(); 
+    const menuItems: MenuItem[] = MenuItems();
 
     return (
         <React.Fragment>
@@ -91,17 +106,21 @@ export default function Navbar(props: Props) {
                                         {item.text}
                                     </Button>
                                 ) : (
-                                    item.to ? (
-                                        <Link to={item.to} style={{ textDecoration: 'none', color: 'white' }}>
-                                            <Button  sx={{ color: 'white' }}>
-                                                {item.text}
-                                            </Button>
-                                        </Link>
-                                    ) : (
-                                        <Button startIcon={item.icon} sx={{ color: 'white' }} onClick={item.onClick}>
-                                            {item.text}
-                                        </Button>
-                                    )
+                                    <Button
+                                        sx={{ color: 'white' }}
+                                        onClick={() => {
+                                            const linkTo = item.to || "#"; 
+                                            if (linkTo === "#") {
+                                                handleScroll(linkTo.substring(1));
+                                            } else if (linkTo.startsWith("/")) {
+                                                return <RouterLink to={linkTo} style={{ textDecoration: 'none', color: 'white' }} />;
+                                            } else {
+                                                window.open(linkTo, '_blank');
+                                            }
+                                        }}
+                                    >
+                                        {item.text}
+                                    </Button>
                                 )}
                             </Box>
                         ))}
@@ -110,48 +129,52 @@ export default function Navbar(props: Props) {
             </AppBar>
 
             <Drawer
-                anchor="right"
-                open={drawerOpen}
-                onClose={toggleDrawer(false)}
-                sx={{
-                    display: { xs: 'block', md: 'none' },
-                    padding: 2,
-                }}
-            >
-                <Typography sx={{ color: 'black', pt: 2,pb:1, textAlign: 'center' }}>
-                     Menu 
-                </Typography>
-                <List sx={{ padding: 0 }}>
-                <hr />
-
-                    {menuItems.map((item, index) => (
-                        <ListItem key={index}>
-                            <ListItemIcon sx={{ color: 'black' }}>{item.icon}</ListItemIcon>
-                            <ListItemText
-                                primary={
-                                    item.onClick ? (
-                                        <Button onClick={item.onClick}  sx={{ color: 'black' }}>
-                                            {item.text}
-                                        </Button>
-                                    ) : (
-                                        item.to ? (
-                                            <Link to={item.to} style={{ textDecoration: 'none' }}>
-                                                <Button  sx={{ color: 'black' }}>
-                                                    {item.text}
-                                                </Button>
-                                            </Link>
-                                        ) : (
-                                            <Button  sx={{ color: 'black' }} onClick={item.onClick}>
+    anchor="right"
+    open={drawerOpen}
+    onClose={toggleDrawer(false)}
+    sx={{
+        display: { xs: 'block', md: 'none' },
+        padding: 2,
+    }}
+>
+    <Typography sx={{ color: 'black', pt: 2, pb: 1, textAlign: 'center' }}>
+        Menu
+    </Typography>
+    <List sx={{ padding: 0 }}>
+        <hr />
+        {menuItems.map((item, index) => (
+            <ListItem key={index}>
+                <ListItemIcon sx={{ color: 'black' }}>{item.icon}</ListItemIcon>
+                <ListItemText
+                    primary={
+                        <Button
+                            sx={{ color: 'black' }}
+                            onClick={() => {
+                                const linkTo = item.to || "#";
+                                if (linkTo === "#") {
+                                    handleScroll(linkTo.substring(1)); 
+                                } else if (linkTo.startsWith("/")) {
+                                    return (
+                                        <Link to={linkTo} style={{ textDecoration: 'none' }}>
+                                            <Button sx={{ color: 'black' }}>
                                                 {item.text}
                                             </Button>
-                                        )
-                                    )
+                                        </Link>
+                                    );
+                                } else {
+                                    window.location.href = linkTo;
                                 }
-                            />
-                        </ListItem>
-                    ))}
-                </List>
-            </Drawer>
+                            }}
+                        >
+                            {item.text}
+                        </Button>
+                    }
+                />
+            </ListItem>
+        ))}
+    </List>
+</Drawer>
+
 
             <Toolbar id="back-to-top-anchor" />
 

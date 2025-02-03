@@ -34,8 +34,8 @@ const AssetDetails: React.FC = () => {
         ],
         project_finance: [
             { label: "Project Name", key: "project_name" },
-            { label: "Outstanding Loan", key: "outstanding_loan" },
-            { label: "Total Project Cost", key: "total_project_cost" },
+            { label: "Outstanding Loan", key: "outstanding_loan",type:'number'  },
+            { label: "Total Project Cost", key: "total_project_cost" ,type:'number' },
             { label: "Project Phase", key: "project_phase" },
             // optional
             { label: "Reported Emissions (Optional)", key: "reported_emissions",type:'number' ,status:"optional"},
@@ -44,20 +44,20 @@ const AssetDetails: React.FC = () => {
         ],
         commercial_real: [
             { label: "Building Name", key: "building_name" },
-            { label: "Outstanding Loan Amount", key: "outstanding_loan" },
-            { label: "Total Property Value", key: "total_property_value" },
-            { label: "Floor Area", key: "floor_area" },
+            { label: "Outstanding Loan Amount", key: "outstanding_loan" ,type:'number' },
+            { label: "Total Property Value", key: "total_property_value" ,type:'number' },
+            { label: "Floor Area", key: "floor_area",type:'number' },
             // optional
             { label: "Reported Energy Computation (Optional)", key: "energy_consumption",type:'number',status:"optional" },
             { label: "Emission Factor (Optional)", key: "emission_factor",type:'number',status:"optional"},
         ],
         mortages: [
             { label: "Project Name", key: "property_name" },
-            { label: "Outstanding Loan Amount", key: "outstanding_loan" },
-            { label: "Total Property Value", key: "total_property_value" },
-            { label: "Floor Area", key: "floor_area" },
+            { label: "Outstanding Loan Amount", key: "outstanding_loan" ,type:'number' },
+            { label: "Total Property Value", key: "total_property_value" ,type:'number' },
+            { label: "Floor Area", key: "floor_area",type:'number' },
             // select field
-            { label: "Property Type", key: "property_type" },
+            { label: "Property Type", key: "property_type", },
             // optional
             { label: "Reported Energy Consumption (Optional)", key: "energy_consumption" ,type:'number',status:"optional"},
             { label: "Emission Factor (Optional)", key: "emission_factor" ,type:'number',status:"optional"},

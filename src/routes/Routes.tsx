@@ -9,6 +9,7 @@ import SubmitConfirmation from '../components/assets/Submit';
 import PrivateRoute from '../hooks/AuthRoutes';
 import Choice from '../pages/Choice';
 import Results from '../components/assets/Result';
+import Dashboard from '../pages/Dashboard';
 
 const router = createBrowserRouter([
     
@@ -46,6 +47,12 @@ const router = createBrowserRouter([
     path: '/results',
     element: (
       <PrivateRoute element={<Results />} />
+    ),
+  },
+  {
+    path: '/dashboard',
+    element: (
+      <PrivateRoute element={<Dashboard />} />
     ),
   },
 ]);
