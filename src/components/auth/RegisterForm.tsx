@@ -31,6 +31,7 @@ const RegisterForm: React.FC = () => {
   });
 
   const navigate = useNavigate();
+  const BASENAME = import.meta.env.VITE_BASENAME;
 
   const { postData, isLoading, error, data } = usePost<{ message: string }>();
 
@@ -38,7 +39,7 @@ const RegisterForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Data:", formData);  
+    // console.log("Form Data:", formData);  
 
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length > 0) {
@@ -48,11 +49,11 @@ const RegisterForm: React.FC = () => {
 
     const response = await postData(apiRoutes.register, formData);
     if (response) {
-      console.log("Registration Successful:", response);
+      // console.log("Registration Successful:", response);
       resetForm();
 
       alert("Registration successful! Please Sign In now.");
-      navigate("/login"); 
+      navigate(`${BASENAME}/login`); 
     }
   };
 
@@ -66,6 +67,7 @@ const RegisterForm: React.FC = () => {
         fullWidth
         variant="outlined"
         margin="normal"
+        required
         error={!!errors.first_name}
         helperText={errors.first_name}
       />
@@ -86,6 +88,8 @@ const RegisterForm: React.FC = () => {
         value={formData.phone}
         onChange={handleChange}
         fullWidth
+        type="number"
+        required
         variant="outlined"
         margin="normal"
         error={!!errors.phone}
@@ -96,6 +100,7 @@ const RegisterForm: React.FC = () => {
         label="Address"
         value={formData.address}
         onChange={handleChange}
+        required
         fullWidth
         variant="outlined"
         margin="normal"
@@ -106,6 +111,7 @@ const RegisterForm: React.FC = () => {
         name="country"
         label="Country"
         value={formData.country}
+        required
         onChange={handleChange}
         fullWidth
         variant="outlined"
@@ -144,7 +150,7 @@ const RegisterForm: React.FC = () => {
 
       <Box sx={{ marginBlock: 7, display: "flex", alignItems: "center", justifyContent: "center" }}>
         <Typography>
-          Already have an account? <Link to="/login"> Sign In Now</Link>
+          Already have an account? <Link to={`${BASENAME}/login`}> Sign In Now</Link>
         </Typography>
       </Box>
     </Box>

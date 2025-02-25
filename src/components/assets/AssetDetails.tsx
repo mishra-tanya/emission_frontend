@@ -7,12 +7,13 @@ import Navbar from "../common/Navbar";
 const AssetDetails: React.FC = () => {
     const { assetClass } = useParams<{ assetClass: string }>();
     const navigate = useNavigate();
+    const BASENAME = import.meta.env.VITE_BASENAME;
 
     const assetFields: Record<string, { label: string; key: string, type?: string,status?:string }[]> = {
         business_loan: [
             { label: "Borrower Name", key: "borrower_name" },
             { label: "Outstanding Loan Amount", key: "outstanding_loan", type: "number" },
-            { label: "Borrower Industry Sector", key: "borrower_industry_sector" },
+            { label: "Borrower Industry Sector", key: "borrower_industry_sector" , type: "select"},
             { label: "Borrower Total Value", key: "borrower_total_value", type: "number" },
             { label: "Borrower Revenue", key: "borrower_revenue", type: "number" },
             // select
@@ -78,6 +79,7 @@ const AssetDetails: React.FC = () => {
     const selectOptions: Record<string, string[]> = {
         borrower_region: ["North America", "Europe", "Asia"],
         sector: ["Energy", "Manufacturing", "Retail"],
+        borrower_industry_sector: ["Energy", "Manufacturing", "Retail"],
         vehicle_type: ["Petrol", "Diesel", "Hybrid", "Electric"]
     };
 
@@ -92,7 +94,7 @@ const AssetDetails: React.FC = () => {
     };
 
     const handleNext = () => {
-        navigate("/submit", { state: { assetClass, inputValues } });
+        navigate(`${BASENAME}/submit`, { state: { assetClass, inputValues } });
     };
 
     return (

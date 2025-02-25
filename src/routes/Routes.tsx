@@ -11,49 +11,36 @@ import Choice from '../pages/Choice';
 import Results from '../components/assets/Result';
 import Dashboard from '../pages/Dashboard';
 
+const BASENAME = import.meta.env.VITE_BASENAME;
+
 const router = createBrowserRouter([
-    
-  { path: '/', element: <HomePage /> },
-  { path: '/register', element: <RegisterPage /> },
-  { path: '/login', element: <LoginPage /> },
+  { path: `${BASENAME}/`, element: <HomePage /> },
+  { path: `${BASENAME}/register`, element: <RegisterPage /> },
+  { path: `${BASENAME}/login`, element: <LoginPage /> },
+  { path: `${BASENAME}/choice`, element: <Choice /> },
   {
-    path:'/choice', element:<Choice/>
+    path: `${BASENAME}/asset`,
+    element: <PrivateRoute element={<AssetClass />} />,
   },
   {
-    path: '/asset',
-    element: (
-      <PrivateRoute element={<AssetClass />} />
-    ),
+    path: `${BASENAME}/assets`,
+    element: <PrivateRoute element={<AssetSelection />} />,
   },
   {
-    path: '/assets',
-    element: (
-      <PrivateRoute element={<AssetSelection />} />
-    ),
+    path: `${BASENAME}/details/:assetClass`,
+    element: <PrivateRoute element={<AssetDetails />} />,
   },
   {
-    path: '/details/:assetClass',
-    element: (
-      <PrivateRoute element={<AssetDetails />} />
-    ),
+    path: `${BASENAME}/submit`,
+    element: <PrivateRoute element={<SubmitConfirmation />} />,
   },
   {
-    path: '/submit',
-    element: (
-      <PrivateRoute element={<SubmitConfirmation />} />
-    ),
+    path: `${BASENAME}/results`,
+    element: <PrivateRoute element={<Results />} />,
   },
   {
-    path: '/results',
-    element: (
-      <PrivateRoute element={<Results />} />
-    ),
-  },
-  {
-    path: '/dashboard',
-    element: (
-      <PrivateRoute element={<Dashboard />} />
-    ),
+    path: `${BASENAME}/dashboard`,
+    element: <PrivateRoute element={<Dashboard />} />,
   },
 ]);
 

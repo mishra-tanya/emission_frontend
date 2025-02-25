@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 const AssetSelection: React.FC = () => {
     const [assetClass, setAssetClass] = useState<string>("");
     const navigate = useNavigate();
+    const BASENAME = import.meta.env.VITE_BASENAME;
 
     const handleNext = () => {
         if (assetClass) {
-            navigate(`/details/${assetClass}`);
+            navigate(`${BASENAME}/details/${assetClass}`);
         }
     };
 

@@ -11,6 +11,8 @@ const formatLabel = (key: string) => {
     .replace(/\b\w/g, (char) => char.toUpperCase()); 
 };
 
+const BASENAME = import.meta.env.VITE_BASENAME;
+
 const hasNestedContent = (value: any) => {
   return typeof value === "object" && value !== null && Object.keys(value).length > 0;
 };
@@ -74,7 +76,7 @@ const Results: React.FC = () => {
             )}
 
             <Box display="flex" justifyContent="center" mt={3}>
-              <Button variant="contained" onClick={() => navigate("/asset")}>
+              <Button variant="contained" onClick={() => navigate(`${BASENAME}/asset`)}>
                 Compute Another Loan
               </Button>
             </Box>

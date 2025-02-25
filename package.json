@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "private": true,
+  "homepage": "/finance_emission_computation",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

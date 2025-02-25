@@ -1,7 +1,8 @@
 import { Pie } from "react-chartjs-2";
 import { useFetch } from "../../hooks/fetchData";
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from "chart.js";
-import { Card, CardContent, Typography, CircularProgress, Box, Grid } from "@mui/material";
+import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 
@@ -10,10 +11,9 @@ interface EmissionsData {
 }
 
 export function EmissionsByAssetClass() {
-  const { data, isLoading, error } = useFetch<EmissionsData>("/grouped-finance-emission");
+  const { data, isLoading,  } = useFetch<EmissionsData>("/grouped-finance-emission");
 
-  if (isLoading) return <CircularProgress />;
-  if (error) return <div>{error}</div>;
+  if (isLoading) return <LoadingSpinner size={33} />;
   if(!data) return null;
 
   const chartData = {
