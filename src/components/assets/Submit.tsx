@@ -9,6 +9,7 @@ const SubmitConfirmation: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { assetClass, inputValues } = location.state || {};
+    const BASENAME = import.meta.env.VITE_BASENAME;
     
     const capitalize = (str: string) =>
         str.replace(/_/g, " ").replace(/\b\w/g, char => char.toUpperCase());
@@ -35,15 +36,15 @@ const SubmitConfirmation: React.FC = () => {
             alert("Invalid asset class selected.");
             return;
         }
-        console.log("Submitting request data:", requestData);
+        // console.log("Submitting request data:", requestData);
 
         try {
             const response = await postData(apiEndpoints[assetClass], requestData);
 
             if (response) {
                 alert("Submitted Successfully!");
-                console.log("Response:", response);
-                navigate("/results", { state: { resultData: response } }); 
+                // console.log("Response:", response);
+                navigate(`${BASENAME}/results`, { state: { resultData: response } }); 
             } else {
                 alert("Submission failed.");
             }

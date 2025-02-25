@@ -23,16 +23,16 @@ const LoginForm: React.FC = () => {
     username: "",
     password: "",
   });
+  const BASENAME = import.meta.env.VITE_BASENAME;
 
   const navigate = useNavigate();
-
   const { postData, isLoading, error } = usePost<AuthResponse>(); 
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    // console.log("Form Data:", formData);
 
     const validationErrors = validateForm(formData);
     if (Object.keys(validationErrors).length > 0) {
@@ -46,17 +46,17 @@ const LoginForm: React.FC = () => {
       Cookies.set("refresh_token", response.refresh, { expires: 7 });
       try {
         const decodedToken: any = jwtDecode(response.access);
-        console.log(decodedToken.user_id);
+        // console.log(decodedToken.user_id);
 
         if (decodedToken && decodedToken.user_id) {
           sessionStorage.setItem("user_id", decodedToken.user_id);
           
         }
       } catch (error) {
-        console.error("Error decoding token:", error);
+        // console.error("Error decoding token:", error);
       }
       alert("Login successful!");
-      navigate("/choice");
+      navigate(`${BASENAME}/choice`);
     } else {
       alert("Login failed. Please check your credentials.");
     }
@@ -96,13 +96,13 @@ const LoginForm: React.FC = () => {
           <Link to="/forgot-password">Forgot Password?</Link>
         </Typography>
         <Typography>
-          Don't have an account? <Link to="/register">Create Now</Link>
+          Don't have an account? <Link to={`${BASENAME}/register`}>Create Now</Link>
         </Typography>
       </Box>
 
       <Box sx={{ marginBlock: 1, display: "flex", alignItems: 'center', justifyContent: 'center' }}>
         <Typography>
-          <Link to="/">Back to Home Page</Link>
+          <Link to={`${BASENAME}/`}>Back to Home Page</Link>
         </Typography>
       </Box>
     </Box>

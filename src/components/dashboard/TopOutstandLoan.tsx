@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   Typography,
-  CircularProgress,
   Box,
   Grid,
   TableContainer,
@@ -14,23 +13,18 @@ import {
   TableBody,
   Paper
 } from "@mui/material";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 export function TopOutstandingLoans() {
-  const { data, isLoading, error } = useFetch<Array<{ project_name: string; outstanding_loan: number }>>("/top-outstanding-loans");
+  const { data, isLoading,  } = useFetch<Array<{ project_name: string; outstanding_loan: number }>>("/top-outstanding-loans");
 
   if (isLoading)
     return (
       <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-        <CircularProgress />
+        <LoadingSpinner size={33} />
       </Box>
     );
 
-  if (error)
-    return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-        <Typography color="error">{error}</Typography>
-      </Box>
-    );
 
   return (
     <Grid item xs={12} sm={6} md={4}>

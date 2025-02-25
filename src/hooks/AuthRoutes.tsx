@@ -9,13 +9,14 @@ interface PrivateRouteProps {
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ element }) => {
   const navigate = useNavigate();
   const { isAuthenticated, loading } = useAuth();
+  const BASENAME = import.meta.env.VITE_BASENAME;
 
   useEffect(() => {
     if (loading) {
       return; 
     }
     if (!isAuthenticated) {
-      navigate('/login'); 
+      navigate(`${BASENAME}/login`); 
     }
   }, [isAuthenticated, loading, navigate]);
 

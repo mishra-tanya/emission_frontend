@@ -5,10 +5,10 @@ import {  useNavigate } from "react-router-dom";
 const NotFoundPage: React.FC = () => {
   const isAuthenticated = useAuth();
   const navigate=useNavigate();
+  const BASENAME = import.meta.env.VITE_BASENAME;
 
   if (!isAuthenticated) {
-    navigate('/login')
-    return <div>Redirecting to login...</div>;
+    navigate(`${BASENAME}/login`)
   }
 
   return (

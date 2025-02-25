@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 const Choice: React.FC = () => {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const BASENAME = import.meta.env.VITE_BASENAME;
 
   useEffect(() => {
     sectionRefs.current.forEach((el, index) => {
@@ -58,10 +59,10 @@ const Choice: React.FC = () => {
           to proceed with the calculation.
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Link to="/asset" style={{ textDecoration: 'none' }}>
+        <Link to={`${BASENAME}/asset`} style={{ textDecoration: 'none' }}>
           <Typography
             component={Link}
-            to="/asset"
+            to={`${BASENAME}/asset`}
             sx={{
               marginTop: 4,
               display: 'inline-flex',
@@ -110,10 +111,10 @@ const Choice: React.FC = () => {
            The dashboard helps in monitoring progress and making informed financial decisions.
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+        <Link to={`${BASENAME}/dashboard`} style={{ textDecoration: 'none' }}>
           <Typography
             component={Link}
-            to="/dashboard"
+            to={`${BASENAME}/dashboard`}
             sx={{
               marginTop: 4,
               display: 'inline-flex',

@@ -19,12 +19,12 @@ export function usePost<T>() {
 
     try {
       const response = await api.post<T>(url, payload);
-      console.log(response.data);
+      // console.log(response.data);
       setState({ data: response.data, error: null, isLoading: false });
       return response.data;
     } catch (error: any) {
       let errorMessage = "Something went wrong";
-      console.log("Field errors:", error);
+      // console.log("Field errors:", error);
       if (error.response?.data) {
         const errorDetails = error.response?.data || {};
      
@@ -32,7 +32,7 @@ export function usePost<T>() {
           .map((fieldErrors: any) => fieldErrors.join(", "))
           .join(", ");
       }
-      console.error("Error response:", errorMessage);
+      // console.error("Error response:", errorMessage);
 
       setState({
         data: null,

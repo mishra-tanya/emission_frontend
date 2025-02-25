@@ -10,7 +10,8 @@ import {
   Legend,
   ChartOptions,
 } from "chart.js";
-import { Card, CardContent, Typography, CircularProgress, Box, Grid } from "@mui/material";
+import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -21,10 +22,9 @@ interface EmissionData {
 }
 
 export function AssetFinanceEmissionChart() {
-  const { data, isLoading, error } = useFetch<EmissionData[]>("/top-asset-finance");
+  const { data, isLoading,  } = useFetch<EmissionData[]>("/top-asset-finance");
 
-  if (isLoading) return <CircularProgress />;
-  if (error) return <div>{error}</div>;
+  if (isLoading) return <LoadingSpinner size={33} />;
 
   const emissionsByAssetClass: Record<string, number> = {};
 

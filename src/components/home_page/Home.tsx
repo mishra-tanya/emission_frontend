@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import useGsapAnimation from '../common/animation/PopUp';
 
 const Home = () => {
+const BASENAME = import.meta.env.VITE_BASENAME;
   
   useEffect(() => {
     const createFloatingItems = () => {
@@ -84,29 +85,29 @@ const Home = () => {
       </Box>
 
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Link to="/login" style={{ textDecoration: 'none' }}>
-          <Typography
-            component={Link}
-            to="/login"
-            sx={{
-              marginTop: 4,
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              textDecoration: 'none',
-              color: 'white',
-              border: '1px solid white',
-              borderRadius: '20px',
-              padding: '0.5rem 1rem',
-              transition: 'all 0.3s ease',
-              marginBottom: 5,
-            }}
-          >
-            Get Started
-            <ArrowOutward sx={{ marginLeft: '0.5rem' }} />
-          </Typography>
-        </Link>
-      </Box>
+  <Link to={`${BASENAME}/login`} style={{ textDecoration: 'none' }}>
+    <Typography
+      sx={{
+        marginTop: 4,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textDecoration: 'none',
+        color: 'white',
+        border: '1px solid white',
+        borderRadius: '20px',
+        padding: '0.5rem 1rem',
+        transition: 'all 0.3s ease',
+        marginBottom: 5,
+        '&:hover': { backgroundColor: 'rgba(255,255,255,0.2)' },
+      }}
+    >
+      Get Started
+      <ArrowOutward sx={{ marginLeft: '0.5rem' }} />
+    </Typography>
+  </Link>
+</Box>
+
     </>
   );
 };

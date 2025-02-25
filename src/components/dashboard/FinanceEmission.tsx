@@ -1,12 +1,12 @@
 import { useFetch } from "../../hooks/fetchData";
-import { Card, CardContent, Typography, CircularProgress, Box, Grid } from "@mui/material";
+import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
 import { AttachMoney } from "@mui/icons-material";  
+import LoadingSpinner from "../common/LoadingSpinner";
 
 export function TotalFinancedEmissions() {
-  const { data, isLoading, error } = useFetch<{ total_financed_emissions: number }>("/total-finance-emission");
+  const { data, isLoading } = useFetch<{ total_financed_emissions: number }>("/total-finance-emission");
 
-  if (isLoading) return <CircularProgress />;
-  if (error) return <div>{error}</div>;
+  if (isLoading) return <LoadingSpinner size={33} />;
 
   return (
     <Grid item xs={12} sm={6} md={6}>
@@ -23,7 +23,7 @@ export function TotalFinancedEmissions() {
                   Total Financed Emissions
                 </Typography>
                 <Typography variant="h4" component="div" sx={{ color: "#00796b", fontWeight: "bold" }}>
-                  {data?.total_financed_emissions??0} tCO₂e/year
+                  {data?.total_financed_emissions??"N/A"} tCO₂e/year
                 </Typography>
               </Box>
             </Box>

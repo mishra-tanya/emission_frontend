@@ -1,12 +1,12 @@
 import { useFetch } from "../../hooks/fetchData";
-import { Card, CardContent, Typography, CircularProgress, Box, Grid } from "@mui/material";
+import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
 import { Assessment } from "@mui/icons-material";  
+import LoadingSpinner from "../common/LoadingSpinner";
 
 export function WeightedDataQualityScore() {
-  const { data, isLoading, error } = useFetch<{ average_data_quality_score: number }>("/average-data-quality");
+  const { data, isLoading } = useFetch<{ average_data_quality_score: number }>("/average-data-quality");
 
-  if (isLoading) return <CircularProgress />;
-  if (error) return <div>{error}</div>;
+  if (isLoading) return <LoadingSpinner size={33} />;
 
   return (
     <Grid item xs={12} sm={6} md={6}>
