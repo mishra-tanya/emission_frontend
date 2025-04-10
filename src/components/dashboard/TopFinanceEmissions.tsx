@@ -17,7 +17,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 interface EmissionData {
   asset_class: string;
-  financed_emissions: number;
+  financed_emissions_1: number;
   project_name: string;
 }
 
@@ -28,8 +28,8 @@ export function AssetFinanceEmissionChart() {
 
   const emissionsByAssetClass: Record<string, number> = {};
 
-  data?.forEach(({ financed_emissions, project_name }: EmissionData) => {
-    emissionsByAssetClass[project_name] = (emissionsByAssetClass[project_name] || 0) + financed_emissions;
+  data?.forEach(({ financed_emissions_1, project_name }: EmissionData) => {
+    emissionsByAssetClass[project_name] = (emissionsByAssetClass[project_name] || 0) + financed_emissions_1;
   });
 
   const formatNumber = (num: number) => {

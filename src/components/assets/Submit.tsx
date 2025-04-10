@@ -1,27 +1,18 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Card, CardContent, Typography, Button, Box, Grid } from "@mui/material";
-import Navbar from "../common/Navbar";
-import Footer from "../common/Footer";
 import { usePost } from "../../hooks/usePost";
+import { business_heading } from "./data/Heading";
+import { apiEndpoints } from "../../routes/apiRoutes";
 
 const SubmitConfirmation: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { assetClass, inputValues } = location.state || {};
     const BASENAME = import.meta.env.VITE_BASENAME;
-    
+
     const capitalize = (str: string) =>
         str.replace(/_/g, " ").replace(/\b\w/g, char => char.toUpperCase());
-
-    const apiEndpoints: { [key: string]: string } = {
-        "motor_vehicle": "/add-motor/",
-        "mortages": "/add-mortages/",
-        "commercial_real": "/add-commercial-estate/",
-        "project_finance": "/add-project-finance/",
-        "listed_equity": "/add-listed-equity/",
-        "business_loan": "/add-business-loan/",
-    };
 
     const requestData = {
         asset_class: capitalize(assetClass),
@@ -36,7 +27,7 @@ const SubmitConfirmation: React.FC = () => {
             alert("Invalid asset class selected.");
             return;
         }
-        // console.log("Submitting request data:", requestData);
+        console.log("Submitting request data:", requestData);
 
         try {
             const response = await postData(apiEndpoints[assetClass], requestData);
@@ -44,7 +35,7 @@ const SubmitConfirmation: React.FC = () => {
             if (response) {
                 alert("Submitted Successfully!");
                 // console.log("Response:", response);
-                navigate(`${BASENAME}/results`, { state: { resultData: response } }); 
+                navigate(`${BASENAME}/results`, { state: { resultData: response } });
             } else {
                 alert("Submission failed.");
             }
@@ -53,44 +44,66 @@ const SubmitConfirmation: React.FC = () => {
             alert("An error occurred while submitting data.");
         }
     };
-
+    let i = 0
     return (
         <>
-            <Navbar />
-            <Box sx={{ m: 2 }}>
-                <Card sx={{ maxWidth: 600, margin: "auto", mt: 5, p: 3, boxShadow: 3 }}>
+            <Box sx={{ xs: { m: 0 }, sm: { m: 2 } }}>
+                <Card sx={{ maxWidth: 900, margin: "auto", mt: 5, p: 3, boxShadow: 3 }}>
                     <CardContent>
-                        <Typography variant="h4" gutterBottom sx={{textAlign:"center"}}>
+                        <Typography variant="h4" gutterBottom sx={{ textAlign: "center" }}>
                             Confirm & Submit
                         </Typography>
 
-                        <Typography variant="h5" sx={{ mt: 2 ,textAlign:'center',p:1,bgcolor:'#001836',color:'white'}}>
-                            <strong>Asset Class: </strong>  
+                        <Typography variant="h5" sx={{ mt: 2, textAlign: 'center', p: 1, bgcolor: '#001836', color: 'white' }}>
+                            <strong>Asset Class: </strong>
                             <Typography>{assetClass ? capitalize(assetClass) : "N/A"}</Typography>
                         </Typography>
 
                         {inputValues && Object.keys(inputValues).length > 0 ? (
                             <Box sx={{ mt: 2 }}>
-                                {Object.entries(inputValues).map(([key, value]) => (
-                                    <Grid container key={key} sx={{ mt: 1 }}>
-                                        <Grid item xs={6}>
-                                            <Box sx={{ backgroundColor: "#055bab", color: "white", padding: "0 5px",p:1, textAlign: "left" }}>
-                                                <Typography variant="body2">{capitalize(key)}</Typography>
-                                            </Box>
+                                {Object.entries(inputValues).map(([key, value]) => {
+                                    const isHeading = ["heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "heading7", "heading8"].some(h => key.toLowerCase().includes(h));
+                                    if (isHeading) {
+                                        const headingText = business_heading[i] ? capitalize(business_heading[i]) : "Section";
+                                        i++;
+                                        return (
+                                            <Grid container key={key} sx={{ mt: 2 }}>
+                                                <Grid item xs={12}>
+                                                    <Box sx={{ backgroundColor: "#003366", color: "white", p: 1, textAlign: "center", borderRadius: 1 }}>
+                                                        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                                                            {capitalize(headingText)
+                                                            }
+                                                        </Typography>
+                                                    </Box>
+                                                </Grid>
+                                            </Grid>
+                                        );
+                                    }
+
+                                    return (
+                                        <Grid container key={key} sx={{ mt: 1 }}>
+                                            <Grid item xs={12} sm={6}>
+                                                <Box sx={{ backgroundColor: "#055bab", color: "white", padding: "0 5px", p: 1, textAlign: "left" }}>
+                                                    <Typography variant="body2">{capitalize(key)}</Typography>
+                                                </Box>
+                                            </Grid>
+                                            <Grid item xs={12} sm={6}>
+                                                <Box sx={{ backgroundColor: "#a8ceff", padding: "0 5px", p: 1, textAlign: "left" }}>
+                                                    <Typography variant="body2" sx={{ mx: 1 }}>
+                                                        {value ? capitalize(String(value)) : "N/A"}
+                                                    </Typography>
+                                                </Box>
+                                            </Grid>
                                         </Grid>
-                                        <Grid item xs={6}>
-                                            <Box sx={{ backgroundColor: "#a8ceff", padding: "0 5px",p:1, textAlign: "left", }}>
-                                                <Typography variant="body2" sx={{mx:1}}>{value ? capitalize(String(value)) : "N/A"}</Typography>
-                                            </Box>
-                                        </Grid>
-                                    </Grid>
-                                ))}
+                                    );
+                                })}
                             </Box>
                         ) : (
                             <Typography variant="body2" sx={{ mt: 2, color: "error.main" }}>
                                 No details provided.
                             </Typography>
                         )}
+
 
                         <Box display="flex" justifyContent="space-between" mt={3}>
                             <Button variant="outlined" onClick={() => navigate(-1)}>
@@ -108,7 +121,6 @@ const SubmitConfirmation: React.FC = () => {
                     </CardContent>
                 </Card>
             </Box>
-            <Footer />
         </>
     );
 };

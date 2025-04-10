@@ -1,8 +1,8 @@
 * {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
-  font-weight: 400;
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important; */
+  font-weight: 300;
   font-style: normal;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 @media (max-width: 600px) {

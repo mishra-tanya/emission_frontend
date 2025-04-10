@@ -1,10 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import { gsap } from "gsap";
-import image1 from "../assets/1.jpg";
-import image2 from "../assets/2.jpg";
-import Navbar from "../components/common/Navbar";
-import Footer from "../components/common/Footer";
 import StyleType from "../components/common/StyleType";
 import { ArrowOutward } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -33,7 +29,6 @@ const Choice: React.FC = () => {
 
   return (
    <>
-   <Navbar/>
    <Box sx={{ maxWidth: "900px", margin: "auto", padding: "2rem 1rem" }}>
     <StyleType title="Select An Option"/>
     <hr /><br />
@@ -85,7 +80,7 @@ const Choice: React.FC = () => {
       </Box>
         </Grid>
         <Grid item xs={12} md={6}>
-          <img src={image1} alt="Visual 1" width="100%" style={{ borderRadius: "8px",maxHeight:"450px" }} />
+          <img src={`${BASENAME}/assets/1.jpg`} alt="Visual 1" width="100%" style={{ borderRadius: "8px",maxHeight:"450px" }} />
         </Grid>
         
       </Grid>
@@ -99,7 +94,7 @@ const Choice: React.FC = () => {
         ref={(el) => (sectionRefs.current[1] = el)}
       >
         <Grid item xs={12} md={6}>
-          <img src={image2} alt="Visual 2" width="100%" style={{ borderRadius: "8px",maxHeight:"450px"  }} />
+          <img src={`${BASENAME}/assets/2.jpg`} alt="Visual 2" width="100%" style={{ borderRadius: "8px",maxHeight:"450px"  }} />
         </Grid>
         <Grid item xs={12} md={6}>
           <StyleType title=" View Dashboard"/>
@@ -138,7 +133,6 @@ const Choice: React.FC = () => {
         </Grid>
       </Grid>
     </Box>
-   <Footer/>
    </>
   );
 };

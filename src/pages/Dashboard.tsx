@@ -3,15 +3,12 @@ import { EmissionsByAssetClass } from "../components/dashboard/AssetGroupPie";
 import { WeightedDataQualityScore } from "../components/dashboard/DataQualityScore";
 import { TotalFinancedEmissions } from "../components/dashboard/FinanceEmission";
 import { TopOutstandingLoans } from "../components/dashboard/TopOutstandLoan";
-import Navbar from "../components/common/Navbar";
-import Footer from "../components/common/Footer";
 import StyleType from "../components/common/StyleType";
 import { AssetFinanceEmissionChart } from "../components/dashboard/TopFinanceEmissions";
 
 function Dashboard() {
   return (
     <>
-    <Navbar/>
     <StyleType title="Overview Dashboard"/>
    <Box sx={{p:3}} >
 
@@ -27,7 +24,6 @@ function Dashboard() {
 
     </Grid>
    </Box>
-    <Footer/>
 
     </>
   );

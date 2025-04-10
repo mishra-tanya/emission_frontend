@@ -10,39 +10,36 @@ import PrivateRoute from '../hooks/AuthRoutes';
 import Choice from '../pages/Choice';
 import Results from '../components/assets/Result';
 import Dashboard from '../pages/Dashboard';
+import Layout from '../components/common/Layout';
+import NotFoundPage from '../pages/NotFoundPage';
 
 const BASENAME = import.meta.env.VITE_BASENAME;
-
 const router = createBrowserRouter([
-  { path: `${BASENAME}/`, element: <HomePage /> },
-  { path: `${BASENAME}/register`, element: <RegisterPage /> },
-  { path: `${BASENAME}/login`, element: <LoginPage /> },
-  { path: `${BASENAME}/choice`, element: <Choice /> },
   {
-    path: `${BASENAME}/asset`,
-    element: <PrivateRoute element={<AssetClass />} />,
-  },
-  {
-    path: `${BASENAME}/assets`,
-    element: <PrivateRoute element={<AssetSelection />} />,
-  },
-  {
-    path: `${BASENAME}/details/:assetClass`,
-    element: <PrivateRoute element={<AssetDetails />} />,
-  },
-  {
-    path: `${BASENAME}/submit`,
-    element: <PrivateRoute element={<SubmitConfirmation />} />,
-  },
-  {
-    path: `${BASENAME}/results`,
-    element: <PrivateRoute element={<Results />} />,
-  },
-  {
-    path: `${BASENAME}/dashboard`,
-    element: <PrivateRoute element={<Dashboard />} />,
-  },
+    path: `${BASENAME}/`,
+    element: <Layout />,
+    children: [
+      { path: '', element: <HomePage /> },
+
+      // public
+      { path: 'register', element: <RegisterPage /> },
+      { path: 'login', element: <LoginPage /> },
+
+      // private/authenticated
+      { path: 'choice', element: <PrivateRoute element={<Choice />} /> },
+      { path: 'asset', element: <PrivateRoute element={<AssetClass />} /> },
+      { path: 'assets', element: <PrivateRoute element={<AssetSelection />} /> },
+      { path: 'details/:assetClass', element: <PrivateRoute element={<AssetDetails />} /> },
+      { path: 'submit', element: <PrivateRoute element={<SubmitConfirmation />} /> },
+      { path: 'results', element: <PrivateRoute element={<Results />} /> },
+      { path: 'dashboard', element: <PrivateRoute element={<Dashboard />} /> },
+      
+      // not found
+      { path: '*', element: <NotFoundPage /> },
+    ]
+  }
 ]);
+
 
 const AppRouter = () => <RouterProvider router={router} />;
 

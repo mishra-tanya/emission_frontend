@@ -11,6 +11,8 @@ const useLogout = () => {
     sessionStorage.removeItem('user_id');
 
     navigate(`${BASENAME}/login`);
+    window.location.reload();
+
   };
 
   return logout;

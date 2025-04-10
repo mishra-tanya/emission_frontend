@@ -17,7 +17,7 @@ const AssetSelection: React.FC = () => {
        <>
        <Box sx={{m:2}}>
 
-       <Card sx={{ maxWidth: 600, margin: "auto", marginBlock: 15, p: 3, boxShadow: 3 }}>
+       <Card sx={{ maxWidth: 900, margin: "auto", marginBlock: 15, p: 3, boxShadow: 3 }}>
             <CardContent>
                 <Typography variant="h5" gutterBottom>
                     Select Asset Class

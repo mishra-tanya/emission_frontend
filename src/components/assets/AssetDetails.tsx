@@ -1,87 +1,13 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Card, CardContent, Typography, TextField, Button, Box, MenuItem } from "@mui/material";
-import Footer from "../common/Footer";
-import Navbar from "../common/Navbar";
+import { Card, CardContent, Typography, TextField, Button, Box, MenuItem, Grid } from "@mui/material";
+import { assetFields } from "./data/AssetFieldData";
+import { selectOptions } from "./data/SelectOption";
 
 const AssetDetails: React.FC = () => {
     const { assetClass } = useParams<{ assetClass: string }>();
     const navigate = useNavigate();
     const BASENAME = import.meta.env.VITE_BASENAME;
-
-    const assetFields: Record<string, { label: string; key: string, type?: string,status?:string }[]> = {
-        business_loan: [
-            { label: "Borrower Name", key: "borrower_name" },
-            { label: "Outstanding Loan Amount", key: "outstanding_loan", type: "number" },
-            { label: "Borrower Industry Sector", key: "borrower_industry_sector" , type: "select"},
-            { label: "Borrower Total Value", key: "borrower_total_value", type: "number" },
-            { label: "Borrower Revenue", key: "borrower_revenue", type: "number" },
-            // select
-            { label: "Borrower Region", key: "borrower_region", type: "select" },
-            // optional
-            { label: "Reported Emissions (Optional)", key: "reported_emissions", type: "number",status:"optional" },
-            { label: "Physical Data Inactivity (Optional)", key: "physical_activity_data",  type: "number",status:"optional" },
-        ],
-        listed_equity: [
-            { label: "Company Name", key: "company_name" },
-            { label: "Outstanding Investment Amount", key: "outstanding_loan", type: "number" },
-            { label: "Enterprise Value Including Cash", key: "evic", type: "number" },
-            { label: "Geography", key: "geography" },
-            // optional
-            { label: "Reported Emissions (Optional)", key: "reported_emissions",  type: "number",status:"optional" },
-            { label: "Revenue  (Optional)", key: "revenue", type: "number" ,status:"optional"},
-            // select
-            { label: "Sector", key: "sector", type: "select" },
-        ],
-        project_finance: [
-            { label: "Project Name", key: "project_name" },
-            { label: "Outstanding Loan", key: "outstanding_loan",type:'number'  },
-            { label: "Total Project Cost", key: "total_project_cost" ,type:'number' },
-            { label: "Project Phase", key: "project_phase" },
-            // optional
-            { label: "Reported Emissions (Optional)", key: "reported_emissions",type:'number' ,status:"optional"},
-            { label: "Activity Data (Optional)", key: "activity_data" ,type:'number',status:"optional"},
-            { label: "Emission Factor (Optional)", key: "emission_factor" ,type:'number',status:"optional"},
-        ],
-        commercial_real: [
-            { label: "Building Name", key: "building_name" },
-            { label: "Outstanding Loan Amount", key: "outstanding_loan" ,type:'number' },
-            { label: "Total Property Value", key: "total_property_value" ,type:'number' },
-            { label: "Floor Area", key: "floor_area",type:'number' },
-            // optional
-            { label: "Reported Energy Computation (Optional)", key: "energy_consumption",type:'number',status:"optional" },
-            { label: "Emission Factor (Optional)", key: "emission_factor",type:'number',status:"optional"},
-        ],
-        mortages: [
-            { label: "Project Name", key: "property_name" },
-            { label: "Outstanding Loan Amount", key: "outstanding_loan" ,type:'number' },
-            { label: "Total Property Value", key: "total_property_value" ,type:'number' },
-            { label: "Floor Area", key: "floor_area",type:'number' },
-            // select field
-            { label: "Property Type", key: "property_type", },
-            // optional
-            { label: "Reported Energy Consumption (Optional)", key: "energy_consumption" ,type:'number',status:"optional"},
-            { label: "Emission Factor (Optional)", key: "emission_factor" ,type:'number',status:"optional"},
-        ],
-        motor_vehicle: [
-            { label: "Vehicle Name", key: "vehicle_name" },
-            { label: "Outstanding Loan Amount", key: "outstanding_loan", type: "number" },
-            { label: "Total Vehicle Cost", key: "total_vehicle_cost", type: "number" },
-            // select
-            { label: "Vehicle Type", key: "vehicle_type", type: "select" },
-            // optional
-            { label: "Emission Factor for Fuel (Optional)", key: "emission_factor", type: "number",status:"optional" },
-            { label: "Annual Fuel Consumptio (Optional)n", key: "annual_fuel_consumption", type: "number",status:"optional" },
-
-        ]
-    };
-
-    const selectOptions: Record<string, string[]> = {
-        borrower_region: ["North America", "Europe", "Asia"],
-        sector: ["Energy", "Manufacturing", "Retail"],
-        borrower_industry_sector: ["Energy", "Manufacturing", "Retail"],
-        vehicle_type: ["Petrol", "Diesel", "Hybrid", "Electric"]
-    };
 
     const fields = assetFields[assetClass || ""] || [];
 
@@ -90,76 +16,129 @@ const AssetDetails: React.FC = () => {
     );
 
     const handleInputChange = (key: string, value: string) => {
-        setInputValues(prev => ({ ...prev, [key]: value }));
+        const field = fields.find(f => f.key === key);
+        console.log(field)
+        if (field?.type === "number") {
+            const numValue = Number(value);
+            if (value !== "" && numValue < 0) {
+                return;
+            }
+        }
+        setInputValues(prev => ({ ...prev, [key]: value,  }));
+        
     };
 
     const handleNext = () => {
         navigate(`${BASENAME}/submit`, { state: { assetClass, inputValues } });
     };
+    const inputStyles = {
+        '& input[type=number]': {
+          MozAppearance: 'textfield',
+          WebkitAppearance: 'none',
+          appearance: 'none',
+          '&::-webkit-outer-spin-button': {
+            WebkitAppearance: 'none',
+            margin: 0,
+          },
+          '&::-webkit-inner-spin-button': {
+            WebkitAppearance: 'none',
+            margin: 0,
+          },
+        }
+      };
+      console.log(inputValues)
 
     return (
         <>
-            <Navbar />
-          <Box sx={{m:2}}>
+            <Box sx={{ m: 4 }}>
+                <Typography
+                    textAlign="center"
+                    gutterBottom
+                    sx={{
+                        fontWeight: 'bold',
+                        fontSize: { xs: '1.5rem', sm: '2.125rem', md: '3rem' }
+                    }}
+                >
+                    Enter {assetClass?.replace("_", " ").toUpperCase()} Asset Class Details
+                </Typography>
 
-          <Card sx={{ maxWidth: 600, margin: "auto", mt: 5, p: 3, boxShadow: 3 }}>
-                <CardContent>
-                    <Typography variant="h5" textAlign='center' gutterBottom sx={{fontWeight:'bold'}}>
-                        Enter {assetClass?.replace("_", " ").toUpperCase()} Details
-                    </Typography>
+                <Typography
+                textAlign="center"
+                sx={{
+                    color:"red",
+                    fontSize: { xs: '8px', sm: '11px', md: '11px' }
+                }}
+                >
+                   Marked with * are Mandatory Fields
+                </Typography>
 
-                    {fields.length > 0 ? (
+                <Card sx={{ margin: "auto", px: 2, mt: 5, boxShadow: 3 }}>
+                    <CardContent>
                         
-                        fields.map(field => (
-                            field.type === "select" ? (
-                                <TextField
-                                    select
-                                    key={field.key}
-                                    fullWidth
-                                    label={field.label}
-                                    value={inputValues[field.key]}
-                                    onChange={(e) => handleInputChange(field.key, e.target.value)}
-                                    variant="outlined"
-                                    sx={{ mt: 2 }}
-                                >
-                                    <MenuItem value="">Select</MenuItem>
-                                    {selectOptions[field.key]?.map(option => (
-                                        <MenuItem key={option} value={option}>{option}</MenuItem>
-                                    ))}
-                                </TextField>
-                            ) : (
-                                <TextField
-                                    key={field.key}
-                                    fullWidth
-                                    label={field.label}
-                                    type={field.type === "number" ? "number" : "text"}
-                                    value={inputValues[field.key]}
-                                    onChange={(e) => handleInputChange(field.key, e.target.value)}
-                                    variant="outlined"
-                                    sx={{ mt: 2 }}
-                                />
-                            )
-                        ))
-                    ) : (
-                        <Typography color="error">Invalid Asset Class</Typography>
-                    )}
 
-                    <Box display="flex" justifyContent="space-between" mt={3}>
-                        <Button variant="outlined" onClick={() => navigate(-1)}>
-                            Back
-                        </Button>
-                        <Button 
-                            variant="contained" 
-                            onClick={handleNext} 
-                            disabled={fields.some(field => field.status !== "optional" && !inputValues[field.key])}
-                        >
-                            Next
-                        </Button>
-                    </Box>
-                </CardContent>
-            </Card>
-          </Box>
-            <Footer />
+                        <br />
+
+                        <Grid container spacing={2}  >
+    {fields.map((field, index) => (
+        field.heading ? (
+            <Grid item xs={12} key={`heading-${index}`} sx={{mt:4, textDecoration:"underline"}}>
+                <Typography variant="h6" fontWeight="bold" gutterBottom>
+                    {field.heading}:
+                </Typography>
+            </Grid>
+        ) : (
+            <Grid item xs={12} sm={6} key={field.key}>
+                {field.type === "select" ? (
+                    <TextField
+                        select
+                        fullWidth
+                        label={field.label}
+                        value={inputValues[field.key]}
+                        onChange={(e) => handleInputChange(field.key, e.target.value)}
+                        variant="outlined"
+                    >
+                        <MenuItem value="">Select</MenuItem>
+                        {selectOptions[field.key]?.map(option => (
+                            <MenuItem key={option} value={option}>{option}</MenuItem>
+                        ))}
+                    </TextField>
+                ) : (
+                    <TextField
+                        fullWidth
+                        label={field.label}
+                        type={field.type === "number" ? "number" : "text"}
+                        value={inputValues[field.key]}
+                        onChange={(e) => handleInputChange(field.key, e.target.value)}
+                        variant="outlined"
+                        sx={inputStyles}
+                        inputProps={{
+                            min: field.min ?? 0,
+                            onWheel: (e) => e.target instanceof HTMLElement && e.target.blur(), 
+                          }}
+                    />
+                )}
+            </Grid>
+        )
+    ))}
+</Grid>
+
+
+
+                        <Box display="flex" justifyContent="space-between" mt={3}>
+                            <Button variant="outlined" onClick={() => navigate(-1)}>
+                                Back
+                            </Button>
+                            <Button
+                                variant="contained"
+                                onClick={handleNext}
+                                disabled={fields.some(field => field.status !== "optional" && !inputValues[field.key])}
+                            >
+                                Next
+                            </Button>
+                        </Box>
+                    </CardContent>
+                </Card>
+            </Box>
         </>
     );
 };

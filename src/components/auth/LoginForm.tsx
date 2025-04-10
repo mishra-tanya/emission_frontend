@@ -53,10 +53,12 @@ const LoginForm: React.FC = () => {
           
         }
       } catch (error) {
-        // console.error("Error decoding token:", error);
+        console.error("Error decoding token:", error);
       }
-      alert("Login successful!");
+      // alert("Login successful!");
       navigate(`${BASENAME}/choice`);
+    window.location.reload();
+
     } else {
       alert("Login failed. Please check your credentials.");
     }

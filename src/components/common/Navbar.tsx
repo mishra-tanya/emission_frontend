@@ -58,7 +58,7 @@ export default function Navbar(props: Props) {
             <AppBar sx={{ backgroundColor: 'black' }}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Finance Emission Computation
+                        Financed Emission Computation
                     </Typography>
 
                     <IconButton
@@ -79,7 +79,7 @@ export default function Navbar(props: Props) {
                                 component={RouterLink}
                                 to={item.to || "#"}
                                 onClick={item.onClick}
-                                startIcon={item.icon}
+                                // startIcon={item.icon}
                             >
                                 {item.text}
                             </Button>
@@ -102,7 +102,7 @@ export default function Navbar(props: Props) {
                     {menuItems.map((item, index) => (
                         <ListItem  key={index} component={RouterLink} to={item.to || "#"} onClick={item.onClick}>
                             <ListItemIcon sx={{ color: 'black' }}>{item.icon}</ListItemIcon>
-                            <ListItemText primary={item.text} />
+                            <ListItemText sx={{ color: 'black' }} primary={item.text} />
                         </ListItem>
                     ))}
                 </List>
