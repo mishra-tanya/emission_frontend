@@ -32,4 +32,4 @@ jobs:
 
       - name: Deploy to GoDaddy
         run: |
-          rsync -avz --progress -e "ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_rsa" dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USERNAME }}/public_html/finance_emission_computation/
+          rsync -avz --progress -e "ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_rsa" dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USERNAME }}/public_html/finance_emission_computation
