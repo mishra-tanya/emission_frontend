@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Card, CardContent, Typography, Button, Box, Grid } from "@mui/material";
 import { usePost } from "../../hooks/usePost";
-import { business_heading, headings } from "./data/Heading";
+import { headings } from "./data/Heading";
 import { apiEndpoints } from "../../routes/apiRoutes";
 
 const SubmitConfirmation: React.FC = () => {
