@@ -79,47 +79,66 @@ const AssetDetails: React.FC = () => {
                         <br />
 
                         <Grid container spacing={2}  >
-    {fields.map((field, index) => (
-        field.heading ? (
-            <Grid item xs={12} key={`heading-${index}`} sx={{mt:4, textDecoration:"underline"}}>
+                        {fields.map((field, index) => {
+    const shouldRender = !field.conditionalOn || inputValues[field.conditionalOn.key] === field.conditionalOn.value;
+
+    if (!shouldRender) return null;
+
+    if (field.heading) {
+        return (
+            <Grid item xs={12} key={`heading-${index}`} sx={{ mt: 4, textDecoration: "underline" }}>
                 <Typography variant="h6" fontWeight="bold" gutterBottom>
                     {field.heading}:
                 </Typography>
             </Grid>
-        ) : (
-            <Grid item xs={12} sm={6} key={field.key}>
-                {field.type === "select" ? (
-                    <TextField
-                        select
-                        fullWidth
-                        label={field.label}
-                        value={inputValues[field.key]}
-                        onChange={(e) => handleInputChange(field.key, e.target.value)}
-                        variant="outlined"
-                    >
-                        <MenuItem value="">Select</MenuItem>
-                        {selectOptions[field.key]?.map(option => (
-                            <MenuItem key={option} value={option}>{option}</MenuItem>
-                        ))}
-                    </TextField>
-                ) : (
-                    <TextField
-                        fullWidth
-                        label={field.label}
-                        type={field.type === "number" ? "number" : "text"}
-                        value={inputValues[field.key]}
-                        onChange={(e) => handleInputChange(field.key, e.target.value)}
-                        variant="outlined"
-                        sx={inputStyles}
-                        inputProps={{
-                            min: field.min ?? 0,
-                            onWheel: (e) => e.target instanceof HTMLElement && e.target.blur(), 
-                          }}
-                    />
-                )}
-            </Grid>
-        )
-    ))}
+        );
+    }
+
+    return (
+        <Grid item xs={12} sm={6} key={field.key}>
+            {field.type === "select" ? (
+                <TextField
+                    select
+                    fullWidth
+                    label={field.label}
+                    value={inputValues[field.key]}
+                    onChange={(e) => handleInputChange(field.key, e.target.value)}
+                    variant="outlined"
+                >
+                    <MenuItem value="">Select</MenuItem>
+                    {selectOptions[field.key]?.map(option => (
+                        <MenuItem key={option} value={option}>{option}</MenuItem>
+                    ))}
+                </TextField>
+            ) : field.type === "date" ? (
+                <TextField
+                    fullWidth
+                    label={field.label}
+                    type="date"
+                    value={inputValues[field.key]}
+                    onChange={(e) => handleInputChange(field.key, e.target.value)}
+                    InputLabelProps={{ shrink: true }}
+                    variant="outlined"
+                />
+            ) : (
+                <TextField
+                    fullWidth
+                    label={field.label}
+                    type={field.type === "number" ? "number" : "text"}
+                    value={inputValues[field.key]}
+                    onChange={(e) => handleInputChange(field.key, e.target.value)}
+                    variant="outlined"
+                    sx={inputStyles}
+                    inputProps={{
+                        min: field.min ?? 0,
+                        onWheel: (e) => e.target instanceof HTMLElement && e.target.blur(),
+                    }}
+                />
+            )}
+        </Grid>
+    );
+})}
+
 </Grid>
 
 
