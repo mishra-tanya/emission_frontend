@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Card, CardContent, Typography, Button, Box, Grid } from "@mui/material";
 import { usePost } from "../../hooks/usePost";
-import { business_heading } from "./data/Heading";
+import { business_heading, headings } from "./data/Heading";
 import { apiEndpoints } from "../../routes/apiRoutes";
 
 const SubmitConfirmation: React.FC = () => {
@@ -62,16 +62,16 @@ const SubmitConfirmation: React.FC = () => {
                         {inputValues && Object.keys(inputValues).length > 0 ? (
                             <Box sx={{ mt: 2 }}>
                                 {Object.entries(inputValues).map(([key, value]) => {
-                                    const isHeading = ["heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "heading7", "heading8"].some(h => key.toLowerCase().includes(h));
+                                    const isHeading = headings.some(h => key.toLowerCase().includes(h));
                                     if (isHeading) {
-                                        const headingText = business_heading[i] ? capitalize(business_heading[i]) : "Section";
+                                        // const headingText = business_heading[i] ? capitalize(business_heading[i]) : "Section";
                                         i++;
                                         return (
                                             <Grid container key={key} sx={{ mt: 2 }}>
                                                 <Grid item xs={12}>
                                                     <Box sx={{ backgroundColor: "#003366", color: "white", p: 1, textAlign: "center", borderRadius: 1 }}>
                                                         <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                                                            {capitalize(headingText)
+                                                            {capitalize(key)
                                                             }
                                                         </Typography>
                                                     </Box>

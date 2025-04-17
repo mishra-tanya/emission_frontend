@@ -10,7 +10,7 @@ export  const assetFields: Record<string, {
         value: string;
     }; }[]> = {
     business_loan: [
-        { label:"heading", key:"heading1", heading: "General Information", status: "optional" },
+        { label:"heading", key:"general_information", heading: "General Information", status: "optional" },
         { label: "Borrower Name *", key: "borrower_name" },
         { label: "Outstanding Loan Amount *", key: "outstanding_loan", type: "number" },
         { label: "Borrower Industry Sector *", key: "borrower_industry_sector", type: "select" },
@@ -21,13 +21,13 @@ export  const assetFields: Record<string, {
         // { label: "Reported Emissions (Optional)", key: "reported_emissions", type: "number",status:"optional"  },
         //chnages
         // HEADING DECARED EMISSION
-        { label:"heading", key:"heading2", heading: "Declared Emission" , status: "optional"},
+        { label:"heading", key:"declared_emission", heading: "Declared Emission" , status: "optional"},
 
         { label: "Reported Scope 1 Emissions (Optional)", key: "reported_emissions_1", type: "number", status: "optional" },
         { label: "Reported Scope 2 Emissions (Optional)", key: "reported_emissions_2", type: "number", status: "optional" },
 
         // FUEL BASED SCOPE 1 EMISSION
-        { label:"heading", key:"heading3", heading: "Fuel / Electricity Based Emission", status: "optional" },
+        { label:"heading", key:"fuel/_electrictiy_based_emission", heading: "Fuel/ Electricity Based Emission", status: "optional" },
 
         { label: "Fuel 1 Quantity/Amount", key: "fuel_quantity_amount_1", type: "select" , status: "optional"},
         { label: "Fuel 1 (Optional)", key: "fuel_1", type: "number", status: "optional" },
@@ -43,13 +43,13 @@ export  const assetFields: Record<string, {
         { label: "Electicity Quantity/Amount (Optional)", key: "electricity", type: "number", status: "optional" },
 
         // PRODUCTION BASED EMISSION
-        { label:"heading", key:"heading5", heading: "Production Based Emission" , status: "optional"},
+        { label:"heading", key:"production_based_emission", heading: "Production Based Emission" , status: "optional"},
         
         { label: "Production Quantity (Optional)", key: "production_quantity_1", type: "number", status: "optional" },
         // { label: "Production Quantity Scope 2 (Optional)", key: "production_quantity_2", type: "number", status: "optional" },
 
         // REVENUE  BASED EMISSION
-        { label:"heading", key:"heading6", heading: "Revenue Based Emission" , status: "optional"},
+        { label:"heading", key:"revenue_based_emission", heading: "Revenue Based Emission" , status: "optional"},
 
         { label: "Revenue Amount (Optional)", key: "revenue_emission_1", type: "number", status: "optional" },
 
@@ -142,7 +142,7 @@ export  const assetFields: Record<string, {
 
    
     motor_vehicle: [
-        { label: "heading", key: "heading1", heading: "Loan Details", status: "optional" },
+        { label: "heading", key: "loan_details", heading: "Loan Details", status: "optional" },
     
         { label: "Loan Id *", key: "loan_id" },
         { label: "Outstanding Loan Amount *", key: "outstanding_loan", type: "number" },
@@ -152,7 +152,7 @@ export  const assetFields: Record<string, {
         { label: "Reporting Period (Start) *", key: "reporting_start_date", type: "date" }, 
         { label: "Reporting Period (End) *", key: "reporting_end_date", type: "date" }, 
 
-        { label: "heading", key: "heading2", heading: "Vehicle Identification", status: "optional" },
+        { label: "heading", key: "vehicle_identification", heading: "Vehicle Identification", status: "optional" },
         { label: "Do you know the specific vehicle make and model", key: "specific_model_yes_or_no", type: "select", status: "optional" },
         { label: "Vehicle Make", key: "vehicle_make", type: "select", conditionalOn: { key: "specific_model_yes_or_no", value: "Yes" }, status: "optional" },  
         { label: "Vehicle Model", key: "vehicle_model", type: "select", conditionalOn: { key: "specific_model_yes_or_no", value: "Yes" }, status: "optional" }, 
@@ -160,7 +160,7 @@ export  const assetFields: Record<string, {
         { label: "Vehicle Type", key: "vehicle_type", type: "select",conditionalOn: { key: "specific_model_yes_or_no", value: "No" }, status: "optional"  },
         { label: "Fuel Type", key: "fuel_type", type: "select", conditionalOn: { key: "specific_model_yes_or_no", value: "No" } , status: "optional"}, 
     
-        { label: "heading", key: "heading3", heading: "Vehicle Usage Data", status: "optional" },
+        { label: "heading", key: "vehicle_usage_data", heading: "Vehicle Usage Data", status: "optional" },
         { label: "Do you have actual fuel consumption data for this vehicle?", key: "actual_fuel_yes_or_no", type: "select", status: "optional" },
         { label: "Fuel Consumption", key: "fuel_consumption", type: "number", conditionalOn: { key: "actual_fuel_yes_or_no", value: "Yes" }, status: "optional"}, 
         { label: "Unit", key: "fuel_unit", type: "select", conditionalOn: { key: "actual_fuel_yes_or_no", value: "Yes" } , status: "optional"},  
@@ -171,11 +171,11 @@ export  const assetFields: Record<string, {
         { label: "Country", key: "country", conditionalOn: { key: "actual_distance_data_yes_or_no", value: "No" } , status: "optional"}, 
         { label: "Region/State", key: "region",  conditionalOn: { key: "actual_distance_data_yes_or_no", value: "No" } , status: "optional"}, 
 
-        { label: "heading", key: "heading4", heading: "For Hybrid/Plug-in Hybrid", status: "optional" },
+        { label: "heading", key: "for_hybrid/_plug_in_hybrid", heading: "For Hybrid/Plug-in Hybrid", status: "optional" },
         { label: "Do you know the percentage of electric vs. fossil fuel use?", key: "percentage_yes_or_no", type: "select", status: "optional" },
         { label: "Percentage Electric", key: "percentage_electric", type: "number", conditionalOn: { key: "percentage_yes_or_no", value: "Yes" }, status: "optional" }, 
 
-        { label: "heading", key: "heading5", heading: "For Electric/Plug-in Hybrid", status: "optional" },
+        { label: "heading", key: "for_electric/_plug_in_hybrid", heading: "For Electric/Plug-in Hybrid", status: "optional" },
         { label: "Do you know the source of electricity?", key: "source_yes_or_no", type: "select" , status: "optional"},
         { label: "Electric Source", key: "electric_source", type: "select", conditionalOn: { key: "source_yes_or_no", value: "Yes" } , status: "optional"}, 
 
