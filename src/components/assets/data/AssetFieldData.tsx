@@ -27,7 +27,7 @@ export  const assetFields: Record<string, {
         { label: "Reported Scope 2 Emissions (Optional)", key: "reported_emissions_2", type: "number", status: "optional" },
 
         // FUEL BASED SCOPE 1 EMISSION
-        { label:"heading", key:"fuel/_electrictiy_based_emission", heading: "Fuel/ Electricity Based Emission", status: "optional" },
+        { label:"heading", key:"fuel_electrictiy_based_emission", heading: "Fuel/ Electricity Based Emission", status: "optional" },
 
         { label: "Fuel 1 Quantity/Amount", key: "fuel_quantity_amount_1", type: "select" , status: "optional"},
         { label: "Fuel 1 (Optional)", key: "fuel_1", type: "number", status: "optional" },
