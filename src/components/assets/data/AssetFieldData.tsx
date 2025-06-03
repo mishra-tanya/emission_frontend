@@ -31,18 +31,18 @@ export  const assetFields: Record<string, {
         { label:"heading", key:"fuel_electrictiy_based_emission", heading: "Fuel/ Electricity Based Emission", status: "optional" },
 
         { label: "Coal  Quantity/Amount", key: "fuel_quantity_amount_1", type: "select" , status: "optional"},
-        { label: "Coal (kg per tonne)", key: "fuel_1", type: "number",conditionalOn: { key: "fuel_quantity_amount_1", value: "Amount" }, status: "optional" },
-        { label: "Coal (kg per USD)", key: "fuel_1", type: "number",conditionalOn: { key: "fuel_quantity_amount_1", value: "Quantity" }, status: "optional" },
+        { label: "Coal (kg per USD)", key: "fuel_1", type: "number",conditionalOn: { key: "fuel_quantity_amount_1", value: "Amount" }, status: "optional" },
+        { label: "Coal (kg per tonne)", key: "fuel_1", type: "number",conditionalOn: { key: "fuel_quantity_amount_1", value: "Quantity" }, status: "optional" },
 
         
         { label: "Natural Gas Quantity/Amount ", key: "fuel_quantity_amount_2", type: "select" , status: "optional"},
-        { label: "Natural Gas (kg per thousand cf)", key: "fuel_2", type: "number", conditionalOn: { key: "fuel_quantity_amount_2", value: "Amount" },status: "optional" },
-        { label: "Natural Gas (kg per USD) ", key: "fuel_2", type: "number", conditionalOn: { key: "fuel_quantity_amount_2", value: "Quantity" },status: "optional" },
+        { label: "Natural Gas (kg per USD)", key: "fuel_2", type: "number", conditionalOn: { key: "fuel_quantity_amount_2", value: "Amount" },status: "optional" },
+        { label: "Natural Gas (kg per thousand cf) ", key: "fuel_2", type: "number", conditionalOn: { key: "fuel_quantity_amount_2", value: "Quantity" },status: "optional" },
 
 
         { label: "Diesel Quantity/Amount", key: "fuel_quantity_amount_3", type: "select" , status: "optional"},
-        { label: "Diesel (kg per thousand liters)", key: "fuel_3", type: "number",conditionalOn: { key: "fuel_quantity_amount_3", value: "Amount" }, status: "optional" },
-        { label: "Diesel (kg per USD)", key: "fuel_3", type: "number",conditionalOn: { key: "fuel_quantity_amount_3", value: "Quantity" }, status: "optional" },
+        { label: "Diesel (kg per USD)", key: "fuel_3", type: "number",conditionalOn: { key: "fuel_quantity_amount_3", value: "Amount" }, status: "optional" },
+        { label: "Diesel (kg per thousand liters)", key: "fuel_3", type: "number",conditionalOn: { key: "fuel_quantity_amount_3", value: "Quantity" }, status: "optional" },
 
 
         // ELECTRICITY BASED
