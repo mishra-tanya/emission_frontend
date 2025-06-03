@@ -1,5 +1,4 @@
 import { Box, Grid } from "@mui/material";
-import { EmissionsByAssetClass } from "../components/dashboard/AssetGroupPie";
 import { WeightedDataQualityScore } from "../components/dashboard/DataQualityScore";
 import { TotalFinancedEmissions } from "../components/dashboard/FinanceEmission";
 import { TopOutstandingLoans } from "../components/dashboard/TopOutstandLoan";
@@ -19,7 +18,7 @@ function Dashboard() {
     <Grid container spacing={3} sx={{marginBottom:3}} justifyContent="center">
       <TopOutstandingLoans />
 
-      <EmissionsByAssetClass />
+      {/* <EmissionsByAssetClass /> */}
     <AssetFinanceEmissionChart/>
 
     </Grid>

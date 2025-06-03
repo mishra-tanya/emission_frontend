@@ -27,11 +27,11 @@ const AssetSelection: React.FC = () => {
                     <InputLabel>Choose Asset</InputLabel>
                     <Select value={assetClass} onChange={(e) => setAssetClass(e.target.value)}>
                         <MenuItem value="business_loan">Business Loans</MenuItem>
-                        <MenuItem value="listed_equity"> Listed Equity and Corporation Bond</MenuItem>
+                        {/* <MenuItem value="listed_equity"> Listed Equity and Corporation Bond</MenuItem>
                         <MenuItem value="project_finance">Project Finance</MenuItem>
                         <MenuItem value="commercial_real">Commercial Real Estate</MenuItem>
                         <MenuItem value="mortages">Mortages</MenuItem>
-                        <MenuItem value="motor_vehicle">Motor Vehicle Loans</MenuItem>
+                        <MenuItem value="motor_vehicle">Motor Vehicle Loans</MenuItem> */}
 
                     </Select>
                 </FormControl>

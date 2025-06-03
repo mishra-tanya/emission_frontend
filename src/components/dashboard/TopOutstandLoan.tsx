@@ -27,7 +27,7 @@ export function TopOutstandingLoans() {
 
 
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={6}>
       <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
         <Card variant="outlined" sx={{minHeight:439,maxHeight:440, width: "100%", p: 2 }}>
           <CardContent>

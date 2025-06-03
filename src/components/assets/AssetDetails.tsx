@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, Typography, TextField, Button, Box, MenuItem, Grid } from "@mui/material";
 import { assetFields } from "./data/AssetFieldData";
 import { selectOptions } from "./data/SelectOption";
+import { getDynamicUnit } from "./data/DynamicUnit";
 
 const AssetDetails: React.FC = () => {
     const { assetClass } = useParams<{ assetClass: string }>();
@@ -123,7 +124,7 @@ const AssetDetails: React.FC = () => {
             ) : (
                 <TextField
                     fullWidth
-                    label={field.label}
+                    label={`${field.label} ${getDynamicUnit(field.key, inputValues["borrower_industry_sector"]) || field.unit || ""}`}
                     type={field.type === "number" ? "number" : "text"}
                     value={inputValues[field.key]}
                     onChange={(e) => handleInputChange(field.key, e.target.value)}

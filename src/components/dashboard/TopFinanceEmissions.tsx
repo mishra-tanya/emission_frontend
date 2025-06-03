@@ -68,7 +68,7 @@ export function AssetFinanceEmissionChart() {
   };
 
   return (
-    <Grid item xs={12} sm={4} md={4}>
+    <Grid item xs={12} sm={6} md={6}>
       <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
         <Card variant="outlined" sx={{ width: "100%", p: 1, maxHeight: 440, overflowY: "auto", overflowX: "auto" }}>
           <CardContent>
