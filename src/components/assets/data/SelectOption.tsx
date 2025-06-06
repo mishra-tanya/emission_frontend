@@ -43,9 +43,9 @@ export   const selectOptions: Record<string, string[]> = {
         ],
         vehicle_type: ["Passenger Car","MotorCycle","Light Commercial Truck", "Medium/heavy Commercial Truck", "Bus"],
         fuel_type:["Petrol","Diesel","Elecctric","Hybrid","Plug-in Hybrid","Natural Gas"],
-        fuel_quantity_amount_1:quantityAmount,
-        fuel_quantity_amount_2:quantityAmount,
-        fuel_quantity_amount_3:quantityAmount,
+        coal_quantity_amount:quantityAmount,
+        natural_gas_quantity_amount:quantityAmount,
+        diesel_quantity_amount:quantityAmount,
         electricity_quantity_amount:quantityAmount,
 
         is_electric:yesNo,

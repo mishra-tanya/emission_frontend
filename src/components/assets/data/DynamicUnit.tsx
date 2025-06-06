@@ -1,5 +1,5 @@
 export const getDynamicUnit = (key: string, sector: string): string | undefined => {
-    if (key === "production_quantity_1" || key === "revenue_emission_1") {
+    if (key === "production_quantity_1") {
         switch (sector) {
             case "Steel":
             case "Aluminium":

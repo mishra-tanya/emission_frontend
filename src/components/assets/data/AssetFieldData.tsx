@@ -24,30 +24,32 @@ export  const assetFields: Record<string, {
         // HEADING DECARED EMISSION
         { label:"heading", key:"declared_emission", heading: "Declared Emission" , status: "optional"},
 
-        { label: "Reported Scope 1 Emissions ", key: "reported_emissions_1", type: "number", status: "optional" },
-        { label: "Reported Scope 2 Emissions ", key: "reported_emissions_2", type: "number", status: "optional" },
+        { label: "Reported Scope 1 Emissions ", key: "reported_emissions_1", type: "number", status: "optional",unit: "(kg CO2 Equivalent)"  },
+        { label: "Reported Scope 2 Emissions ", key: "reported_emissions_2", type: "number", status: "optional",unit: "(kg CO2 Equivalent)"  },
 
         // FUEL BASED SCOPE 1 EMISSION
         { label:"heading", key:"fuel_electrictiy_based_emission", heading: "Fuel/ Electricity Based Emission", status: "optional" },
 
-        { label: "Coal  Quantity/Amount", key: "fuel_quantity_amount_1", type: "select" , status: "optional"},
-        { label: "Coal (kg per USD)", key: "fuel_1", type: "number",conditionalOn: { key: "fuel_quantity_amount_1", value: "Amount" }, status: "optional" },
-        { label: "Coal (kg per tonne)", key: "fuel_1", type: "number",conditionalOn: { key: "fuel_quantity_amount_1", value: "Quantity" }, status: "optional" },
+        { label: "Coal  Quantity/Amount", key: "coal_quantity_amount", type: "select" , status: "optional"},
+        { label: "Coal (Amount in USD)", key: "coal", type: "number",conditionalOn: { key: "coal_quantity_amount", value: "Amount" }, status: "optional" },
+        { label: "Coal (Quantity in tonne)", key: "coal", type: "number",conditionalOn: { key: "coal_quantity_amount", value: "Quantity" }, status: "optional" },
 
         
-        { label: "Natural Gas Quantity/Amount ", key: "fuel_quantity_amount_2", type: "select" , status: "optional"},
-        { label: "Natural Gas (kg per USD)", key: "fuel_2", type: "number", conditionalOn: { key: "fuel_quantity_amount_2", value: "Amount" },status: "optional" },
-        { label: "Natural Gas (kg per thousand cf) ", key: "fuel_2", type: "number", conditionalOn: { key: "fuel_quantity_amount_2", value: "Quantity" },status: "optional" },
+        { label: "Natural Gas Quantity/Amount ", key: "natural_gas_quantity_amount", type: "select" , status: "optional"},
+        { label: "Natural Gas (Amount in USD)", key: "natural_gas", type: "number", conditionalOn: { key: "natural_gas_quantity_amount", value: "Amount" },status: "optional" },
+        { label: "Natural Gas (Quantity in cf) ", key: "natural_gas", type: "number", conditionalOn: { key: "natural_gas_quantity_amount", value: "Quantity" },status: "optional" },
 
 
-        { label: "Diesel Quantity/Amount", key: "fuel_quantity_amount_3", type: "select" , status: "optional"},
-        { label: "Diesel (kg per USD)", key: "fuel_3", type: "number",conditionalOn: { key: "fuel_quantity_amount_3", value: "Amount" }, status: "optional" },
-        { label: "Diesel (kg per thousand liters)", key: "fuel_3", type: "number",conditionalOn: { key: "fuel_quantity_amount_3", value: "Quantity" }, status: "optional" },
+        { label: "Diesel Quantity/Amount", key: "diesel_quantity_amount", type: "select" , status: "optional"},
+        { label: "Diesel (Amount in USD)", key: "diesel", type: "number",conditionalOn: { key: "diesel_quantity_amount", value: "Amount" }, status: "optional" },
+        { label: "Diesel (Quantity in liters)", key: "diesel", type: "number",conditionalOn: { key: "diesel_quantity_amount", value: "Quantity" }, status: "optional" },
 
 
         // ELECTRICITY BASED
         { label: "Electricity Quantity/Amount", key: "electricity_quantity_amount", type: "select" , status: "optional"},
-        { label: "Electicity Quantity/Amount ", key: "electricity", type: "number", status: "optional" },
+        { label: "Electicity (Quantity in kwh)", key: "electricity",conditionalOn: { key: "electricity_quantity_amount", value: "Quantity" }, type: "number", status: "optional" },
+        { label: "Electicity (Amount in USD)", key: "electricity",conditionalOn: { key: "electricity_quantity_amount", value: "Amount" }, type: "number", status: "optional" },
+
 
         // PRODUCTION BASED EMISSION
         { label:"heading", key:"production_based_emission", heading: "Production Based Emission" , status: "optional"},
@@ -58,7 +60,7 @@ export  const assetFields: Record<string, {
         // REVENUE  BASED EMISSION
         { label:"heading", key:"revenue_based_emission", heading: "Revenue Based Emission" , status: "optional"},
 
-        { label: "Revenue Amount ", key: "revenue_emission_1", type: "number", status: "optional" },
+        { label: "Revenue Amount ", key: "revenue_emission_1", type: "number", status: "optional",unit: "(EUR million)" },
 
         // { label: "Physical Activity Data  (Optional)", key: "physical_activity_data",  type: "number",status:"optional"},
     ],
