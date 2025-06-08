@@ -4,6 +4,7 @@ import { TotalFinancedEmissions } from "../components/dashboard/FinanceEmission"
 import { TopOutstandingLoans } from "../components/dashboard/TopOutstandLoan";
 import StyleType from "../components/common/StyleType";
 import { AssetFinanceEmissionChart } from "../components/dashboard/TopFinanceEmissions";
+import EmissionPage from "../components/dashboard/EmissionPage";
 
 function Dashboard() {
   return (
@@ -20,6 +21,7 @@ function Dashboard() {
 
       {/* <EmissionsByAssetClass /> */}
     <AssetFinanceEmissionChart/>
+    <  EmissionPage/>
 
     </Grid>
    </Box>

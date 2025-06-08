@@ -20,7 +20,7 @@ export function WeightedDataQualityScore() {
               
               <Box>
                 <Typography variant="h6" component="div" sx={{ fontWeight: "bold" ,}}>
-                  Average Data Quality Score
+                  Average Data Quality Score (Outstanding Loan)
                 </Typography>
                 <Typography variant="h4" component="div" sx={{ color: "#1976d2", fontWeight: "bold" }}>
                   {data?.average_data_quality_score??"N/A"}
