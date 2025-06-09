@@ -55,23 +55,25 @@ const EmissionDataTable: React.FC<Props> = ({ data,average_data_quality_score })
 
     <TableContainer component={Paper} sx={{ mt: 2 }}>
       <Table>
-        <TableHead>
+        <TableHead >
           <TableRow>
-            <TableCell>Asset Class</TableCell>
-            <TableCell>Data Quality Score</TableCell>
-            <TableCell>Outstanding Loan</TableCell>
-            <TableCell>Borrower Name</TableCell>
-            <TableCell>Action</TableCell>
+            <TableCell  sx={{fontWeight:"bold"}}>S.No.</TableCell>
+            <TableCell  sx={{fontWeight:"bold"}}>Asset Class</TableCell>
+            <TableCell  sx={{fontWeight:"bold"}}>Data Quality Score</TableCell>
+            <TableCell  sx={{fontWeight:"bold"}}>Outstanding Loan</TableCell>
+            <TableCell  sx={{fontWeight:"bold"}}>Borrower Name</TableCell>
+            <TableCell  sx={{fontWeight:"bold"}}>Action</TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {data.map(row => (
+          {data.map((row,index) => (
             <React.Fragment key={row.id}>
               <TableRow hover>
+                <TableCell>{index+1}</TableCell>
                 <TableCell>{row.asset_class}</TableCell>
                 <TableCell>{row.data_quality_score}</TableCell>
-                <TableCell>{row.emission_factors.outstanding_loan}</TableCell>
+                <TableCell>{row.emission_factors.outstanding_loan_EUR_Million}</TableCell>
                 <TableCell>{row.emission_factors.borrower_name}</TableCell>
                 <TableCell>
                   <Button variant="outlined" onClick={() => handleToggle(row.id)}>
