@@ -79,8 +79,10 @@ const BASENAME = import.meta.env.VITE_BASENAME;
       <Box className="box" style={{ marginTop: 18, color: 'white', textAlign: 'center', zIndex: 2 }}>
         <Typography variant='h5' sx={{  textAlign: 'center',  fontSize: { xs: '1rem', sm: '1rem',md: '1.5rem', },
            }}>
-          The application aims to help users <br />calculate the financed emissions
-          associated with loans and investments, <br />following the PCAF framework
+           Easily calculate and track financed
+            emissions for <br/>business loans using 
+            our streamlined,<br/> user-friendly platform. 
+          
         </Typography>
       </Box>
 

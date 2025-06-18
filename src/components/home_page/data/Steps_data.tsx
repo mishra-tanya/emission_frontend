@@ -1,34 +1,18 @@
 export const steps = [
-    {
-      label: 'Select Asset Class',
-      description: `   Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Eaque ad nulla sint, modi in officia, quis corrupti accusamus aut, veritatis
-       ut maxime magnam incidunt cum? Ex nemo vel pariatur voluptates!
-  `,
-    },
-    {
-      label: 'Add Required Details',
-      description:
-        `  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Eaque ad nulla sint, modi in officia, quis corrupti accusamus aut, veritatis
-       ut maxime magnam incidunt cum? Ex nemo vel pariatur voluptates!`,
-    },
-    {
-      label: 'See Computations',
-      description: `  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Eaque ad nulla sint, modi in officia, quis corrupti accusamus aut, veritatis
-       ut maxime magnam incidunt cum? Ex nemo vel pariatur voluptates!`,
-    },
-    {
-      label: 'Add To Dashboard',
-      description: `  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Eaque ad nulla sint, modi in officia, quis corrupti accusamus aut, veritatis
-       ut maxime magnam incidunt cum? Ex nemo vel pariatur voluptates!`,
-    },
-    {
-      label: 'View Dashboard',
-      description: `  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Eaque ad nulla sint, modi in officia, quis corrupti accusamus aut, veritatis
-       ut maxime magnam incidunt cum? Ex nemo vel pariatur voluptates!`,
-    },
-  ];
+  {
+    label: 'Select Asset Class',
+    description: `Choose the type of asset (e.g., Business Loan) to determine the emission calculation approach based on financial activity.`,
+  },
+  {
+    label: 'Add Required Details',
+    description: `Enter loan amount, borrower industry, and other key data to accurately compute financed emissions for the selected asset.`,
+  },
+  {
+    label: 'See Computations and Results',
+    description: `View calculated emissions instantly, including emission intensity, and attribution reports.`,
+  },
+  {
+    label: 'View Dashboard',
+    description: `Track your previous computations, view asset class summaries, and monitor financed emissions over time.`,
+  },
+];

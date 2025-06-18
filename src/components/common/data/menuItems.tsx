@@ -20,18 +20,14 @@ export const MenuItems = (): MenuItem[] => {
   return isAuthenticated
     ? [
         { text: "Home", icon: <Home />, to: getPath("/") },
-        { text: "About", icon: <Info />, to: getPath("#about") },
-        { text: "Contact", icon: <Person />, to: getPath("#contact") },
-        { text: "Service", icon: <MiscellaneousServices />, to: getPath("#service") },
+        { text: "About", icon: <MiscellaneousServices />, to: getPath("#service") },
         { text: "Add Asset Class", icon: <Assessment />, to: getPath("/asset") },
         { text: "Dashboard", icon: <Dashboard />, to: getPath("/dashboard") },
         { text: "Logout", icon: <LogoutOutlined />, onClick: logout },
       ]
     : [
         { text: "Home", icon: <Home />, to: getPath("/") },
-        { text: "About", icon: <Info />, to: getPath("#about") },
-        { text: "Contact", icon: <Person />, to: getPath("#contact") },
-        { text: "Service", icon: <MiscellaneousServices />, to: getPath("#service") },
+        { text: "About", icon: <MiscellaneousServices />, to: getPath("#service") },
         { text: "Login", icon: <Login />, to: getPath("/login") },
       ];
 };

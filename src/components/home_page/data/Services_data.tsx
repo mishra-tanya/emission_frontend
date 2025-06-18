@@ -1,27 +1,24 @@
-import { AccountBalance, Analytics, Build, } from '@mui/icons-material';
+import { AccountBalance, Analytics, Build } from '@mui/icons-material';
 
 const services = [
- 
   {
     id: 1,
-    title: 'Easy Computations',
-    description: 'Tools to assess and manage the climate risks associated with your financial decisions.',
+    title: 'Calculate Emissions',
+    description: 'Input loan and borrower details to instantly calculate financed emissions for business loans.',
     icon: <Build sx={{ fontSize: '3rem', color: '#f39c12' }} />,
   },
   {
     id: 2,
-    title: 'Data Analytics',
-    description: 'Comprehensive analytics to provide insights into financed emissions and sustainability metrics.',
+    title: 'View Computation Results',
+    description: 'Get a clear breakdown of emission calculations based on industry, loan amount, and attribution.',
     icon: <Analytics sx={{ fontSize: '3rem', color: '#e74c3c' }} />,
   },
-  
   {
     id: 3,
-    title: 'Finance Tracking',
-    description: 'Helping businesses calculate and reduce financed emissions using advanced tools.',
+    title: 'Access Your Dashboard',
+    description: 'Monitor and manage all your emission calculations in one place with user-friendly dashboard.',
     icon: <AccountBalance sx={{ fontSize: '3rem', color: '#2980b9' }} />,
   },
- 
 ];
 
 export default services;

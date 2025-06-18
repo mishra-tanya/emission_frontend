@@ -52,7 +52,7 @@ const Services = () => {
     id="service"
     ref={serRef}
     sx={{ padding: '5rem 0', backgroundColor: 'white',m:2 }}>
-        <StyleType title="Why Finance Emission Computation" />
+        <StyleType title="About Finance Emission Computation" />
 
       <Grid container spacing={3} justifyContent="center" >
         {services.map((service, index) => (

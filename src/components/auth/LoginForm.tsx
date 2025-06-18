@@ -95,7 +95,7 @@ const LoginForm: React.FC = () => {
 
       <Box sx={{ marginBlock: 4, display: "flex", flexDirection: { xs: "column", md: "row" }, justifyContent: { xs: "center", md: "space-between" }, alignItems: "center", gap: 1 }}>
         <Typography>
-          <Link to="/forgot-password">Forgot Password?</Link>
+          {/* <Link to="/forgot-password">Forgot Password?</Link> */}
         </Typography>
         <Typography>
           Don't have an account? <Link to={`${BASENAME}/register`}>Create Now</Link>
