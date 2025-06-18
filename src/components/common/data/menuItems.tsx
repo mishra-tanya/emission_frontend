@@ -1,4 +1,4 @@
-import { Assessment, Dashboard, Home, Info, Login, LogoutOutlined, MiscellaneousServices, Person } from "@mui/icons-material";
+import { Assessment, Dashboard, Home, Login, LogoutOutlined, MiscellaneousServices } from "@mui/icons-material";
 import useAuth from "../../../hooks/useAuth";
 import useLogout from "../../../hooks/useLogout";
 
