@@ -18,7 +18,7 @@ const Footer = () => {
         }}
       >
         <Typography variant="body2" sx={{ color: "#bdc3c7" }}>
-          © {new Date().getFullYear()} Finance Emission Computation. All rights reserved.
+          © {new Date().getFullYear()} IndiaESG.org All rights reserved.
         </Typography>
       </Box>
     </Box>

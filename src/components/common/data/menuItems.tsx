@@ -1,4 +1,4 @@
-import { Assessment, Dashboard, Home, Login, LogoutOutlined, MiscellaneousServices } from "@mui/icons-material";
+import { Assessment, Dashboard, Home, Login, LogoutOutlined, MiscellaneousServices, Web } from "@mui/icons-material";
 import useAuth from "../../../hooks/useAuth";
 import useLogout from "../../../hooks/useLogout";
 
@@ -20,6 +20,7 @@ export const MenuItems = (): MenuItem[] => {
   return isAuthenticated
     ? [
         { text: "Home", icon: <Home />, to: getPath("/") },
+        { text: "IndiaESG.org", icon: <Web />, to: getPath("https://indiaesg.org/") },
         { text: "About", icon: <MiscellaneousServices />, to: getPath("#service") },
         { text: "Add Asset Class", icon: <Assessment />, to: getPath("/asset") },
         { text: "Dashboard", icon: <Dashboard />, to: getPath("/dashboard") },
@@ -27,6 +28,7 @@ export const MenuItems = (): MenuItem[] => {
       ]
     : [
         { text: "Home", icon: <Home />, to: getPath("/") },
+        { text: "IndiaESG.org", icon: <Web />, to: getPath("https://indiaesg.org/") },
         { text: "About", icon: <MiscellaneousServices />, to: getPath("#service") },
         { text: "Login", icon: <Login />, to: getPath("/login") },
       ];

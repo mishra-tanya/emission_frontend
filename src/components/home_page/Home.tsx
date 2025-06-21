@@ -1,116 +1,117 @@
-// import { useEffect } from 'react';
-// import gsap from 'gsap';
+// Home.tsx
 import { Box, Typography } from '@mui/material';
 import { ArrowOutward } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
-// import useGsapAnimation from '../common/animation/PopUp';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Home = () => {
-const BASENAME = import.meta.env.VITE_BASENAME;
-  
-  // useEffect(() => {
-  //   const createFloatingItems = () => {
-  //     const container = document.querySelector('.floating-container') as HTMLElement;
-  
-  //     const symbols = ['💰', '➕', '💸', '🎯'];
-  //     for (let i = 0; i < 10; i++) {
-  //       const item = document.createElement('div');
-  //       item.className = 'floating-item';
-  //       item.style.position = 'absolute';
-  //       item.style.fontSize = `${Math.random() * 20 + 20}px`;
-  //       item.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-  //       container?.appendChild(item);
-  
-  //       const startX = Math.random() * (window.innerWidth - 50);
-  //       const startY = window.innerHeight + Math.random() * 100;
-  //       item.style.left = `${startX}px`;
-  //       item.style.top = `${startY}px`;
-  
-  //       gsap.to(item, {
-  //          y: -Math.random() * window.innerHeight, 
-  //         x: `+=${Math.random() * 50 - 25}`,
-  //         duration: Math.random() * 4 + 4,
-  //         repeat: -1,
-  //         ease: 'power1.inOut',
-  //         onRepeat: () => {
-  //           item.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
-  //         },
-  //       });
-  //     }
-  //   };
-  
-  //   createFloatingItems();
-  // }, []);
-  
-  // useGsapAnimation({
-  //   target: '.box',
-  //   from: { opacity: 0, scale: 0 },
-  //   to: { opacity: 1, scale: 1, duration: 2 },
-  // });
+  const BASENAME = import.meta.env.VITE_BASENAME || '';
 
   return (
-    <>
+    <Box
+      sx={{
+        position: 'relative',
+        minHeight: '90vh',
+        backgroundColor: 'black', 
+        overflow: 'hidden',
+        paddingX: 2,
+      }}
+    >
       <Box
         className="floating-container hide-on-mobile"
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-      >
-      </Box>
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        }}
+      />
 
-      <Box className="box" style={{ marginTop: '4%', color: 'white', position: 'relative', zIndex: 2 }}>
+      <Box
+        sx={{
+          marginTop: { xs: '20%', sm: '10%' },
+          color: 'white',
+          textAlign: 'center',
+          zIndex: 2,
+          position: 'relative',
+        }}
+      >
         <Typography
           variant="h1"
           sx={{
-            textAlign: 'center',
             fontSize: {
-              xs: '4rem',
-              sm: '5rem',
-              md: '6rem',
+              xs: '2.5rem',
+              sm: '3.5rem',
+              md: '4.5rem',
+              lg: '5rem',
             },
-            fontWeight:{
-              xs:'bold',
-              sm:'normal'
-            }
+            fontWeight: 'bold',
           }}
         >
           Financed Emission <br /> Computation Tool
         </Typography>
       </Box>
 
-      <Box className="box" style={{ marginTop: 18, color: 'white', textAlign: 'center', zIndex: 2 }}>
-        <Typography variant='h5' sx={{  textAlign: 'center',  fontSize: { xs: '1rem', sm: '1rem',md: '1.5rem', },
-           }}>
-           Easily calculate and track financed
-            emissions for <br/>business loans using 
-            our streamlined,<br/> user-friendly platform. 
-          
+      <Box
+        sx={{
+          marginTop: 4,
+          color: 'white',
+          textAlign: 'center',
+          zIndex: 2,
+          position: 'relative',
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontSize: {
+              xs: '1rem',
+              sm: '1.2rem',
+              md: '1.4rem',
+            },
+            maxWidth: '800px',
+            margin: '0 auto',
+            lineHeight: 1.6,
+          }}
+        >
+          Easily calculate and track financed emissions for business loans using
+          our streamlined, user-friendly platform.
         </Typography>
       </Box>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-  <Link to={`${BASENAME}/login`} style={{ textDecoration: 'none' }}>
-    <Typography
-      sx={{
-        marginTop: 4,
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textDecoration: 'none',
-        color: 'white',
-        border: '1px solid white',
-        borderRadius: '20px',
-        padding: '0.5rem 1rem',
-        transition: 'all 0.3s ease',
-        marginBottom: 5,
-        '&:hover': { backgroundColor: 'rgba(255,255,255,0.2)' },
-      }}
-    >
-      Get Started
-      <ArrowOutward sx={{ marginLeft: '0.5rem' }} />
-    </Typography>
-  </Link>
-</Box>
-
-    </>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: 6,
+          zIndex: 2,
+          position: 'relative',
+        }}
+      >
+        <Box
+          component={RouterLink}
+          to={`${BASENAME}/login`}
+          sx={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textDecoration: 'none',
+            color: 'white',
+            border: '1px solid white',
+            borderRadius: '20px',
+            padding: '0.6rem 1.4rem',
+            transition: 'all 0.3s ease',
+            fontWeight: 'bold',
+            '&:hover': {
+              backgroundColor: 'rgba(255,255,255,0.15)',
+            },
+          }}
+        >
+          Get Started
+          <ArrowOutward sx={{ marginLeft: '0.5rem' }} />
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
